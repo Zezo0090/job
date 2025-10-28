@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobni - منصة العمل الجزئي الوطنية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Design System Variables */
+        :root {
+            /* Jobni Brand Colors */
+            --jobni-green-dark: #1B5E20;
+            --jobni-green-light: #4CAF50;
+            --jobni-gold: #FFB300;
+            --jobni-blue-dark: #1565C0;
+            --jobni-blue-light: #42A5F5;
+            --jobni-gray-light: #F5F5F5;
+            --jobni-white: #FFFFFF;
+            --jobni-text-dark: #263238;
+            --jobni-text-light: #546E7A;
+            
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            
+            /* Typography */
+            --font-arabic: 'Cairo', sans-serif;
+            --font-english: 'Inter', sans-serif;
+            --font-size-sm: 14px;
+            --font-size-base: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 24px;
+            --font-size-2xl: 32px;
+            --font-size-3xl: 48px;
+            
+            /* Borders & Shadows */
+            --border-radius: 12px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-arabic);
+            line-height: 1.6;
+            color: var(--jobni-text-dark);
+            background: var(--jobni-white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+        
+        /* Header & Navigation */
+        .header {
+            background: var(--jobni-white);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--jobni-green-dark), var(--jobni-green-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--jobni-gold);
+            border-radius: 50%;
+            top: -5px;
+            left: -5px;
+            opacity: 0.9;
+        }
+        
+        .logo-text {
+            text-align: right;
+        }
+        
+        .logo-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--jobni-green-dark);
+            margin: 0;
+        }
+        
+        .logo-subtitle {
+            font-size: var(--font-size-sm);
+            color: var(--jobni-gold);
+            margin: 0;
+            display: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+            flex-wrap: nowrap;
+        }
+        
+        .nav-menu li {
+            display: inline-block;
+            margin: 0;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--jobni-text-dark);
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background: var(--jobni-green-light);
+            color: white;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .btn {
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--jobni-green-dark), var(--jobni-green-light));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--jobni-green-dark);
+            border: 2px solid var(--jobni-green-dark);
+        }
+        
+        .btn-outline:hover {
+            background: var(--jobni-green-dark);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--jobni-green-dark), var(--jobni-blue-dark));
+            color: white;
+            padding: 120px 0 var(--space-2xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23FFB300" opacity="0.3"/><circle cx="80" cy="40" r="1.5" fill="%23FFB300" opacity="0.4"/><circle cx="40" cy="80" r="1" fill="%23FFB300" opacity="0.5"/><circle cx="70" cy="70" r="1.2" fill="%23FFB300" opacity="0.3"/></svg>') repeat;
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .hero p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-xl);
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #FFB300, #FFC107);
+            color: var(--jobni-text-dark);
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 179, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 179, 0, 0.5);
+            background: linear-gradient(135deg, #FFC107, #FFD54F);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: var(--jobni-gray-light);
+            padding: var(--space-2xl) 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--jobni-green-dark);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            color: var(--jobni-text-light);
+            font-weight: 500;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: var(--space-2xl) 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .section-title h2 {
+            font-size: var(--font-size-2xl);
+            color: var(--jobni-text-dark);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .section-title p {
+            color: var(--jobni-text-light);
+            font-size: var(--font-size-lg);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .feature-card {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--jobni-green-light), var(--jobni-blue-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-size: 32px;
+            color: white;
+        }
+        
+        .feature-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--jobni-text-dark);
+        }
+        
+        .feature-description {
+            color: var(--jobni-text-light);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: var(--jobni-gray-light);
+            padding: var(--space-2xl) 0;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .step {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: var(--space-md);
+            width: 40px;
+            height: 40px;
+            background: var(--jobni-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .step-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin: var(--space-md) 0 var(--space-sm);
+        }
+        
+        /* Job Listings */
+        .jobs {
+            padding: var(--space-2xl) 0;
+        }
+        
+        .job-filters {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: var(--space-xs) var(--space-md);
+            background: white;
+            border: 2px solid var(--jobni-green-light);
+            border-radius: var(--border-radius);
+            color: var(--jobni-green-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--jobni-green-light);
+            color: white;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .job-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .job-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--jobni-green-light);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--space-md);
+        }
+        
+        .job-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--jobni-text-dark);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .job-company {
+            color: var(--jobni-text-light);
+            font-size: var(--font-size-sm);
+        }
+        
+        .job-salary {
+            background: var(--jobni-green-light);
+            color: white;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+        }
+        
+        .job-details {
+            display: flex;
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
+        }
+        
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--jobni-text-light);
+            font-size: var(--font-size-sm);
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .job-tag {
+            background: var(--jobni-gray-light);
+            color: var(--jobni-text-dark);
+            padding: 4px var(--space-xs);
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .job-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .btn-sm {
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--jobni-gray-light);
+            padding: var(--space-2xl) 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: var(--space-xl);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--jobni-text-dark);
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: var(--space-sm);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-family: var(--font-arabic);
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--jobni-green-light);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--jobni-text-dark);
+            color: white;
+            padding: var(--space-2xl) 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+        }
+        
+        .footer-section h3 {
+            color: var(--jobni-gold);
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-xs);
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--jobni-gold);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #444;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-xl);
+            text-align: center;
+            color: #ccc;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: var(--space-xl);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--jobni-green-dark);
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--jobni-green-dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                background: white;
+                padding: var(--space-md);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-md);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 100px 0 var(--space-xl);
+            }
+            
+            .hero h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid,
+            .features-grid,
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-filters {
+                justify-content: center;
+            }
+        }
+        
+        /* Social Media Icons */
+        .social-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .social-icon-link:hover {
+            background: var(--jobni-gold);
+            color: var(--jobni-text-dark);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 16px rgba(255, 179, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .social-icon-link:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Enhanced hover effects */
+        .btn:not(:disabled):hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-link"></i>
+                </div>
+                <div class="logo-text">
+                    <h1 class="logo-title" data-ar="Jobni" data-en="Jobni">Jobni</h1>
+                </div>
+            </div>
+            
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" data-ar="الرئيسية" data-en="Home" onclick="closeMenu()">الرئيسية</a></li>
+                <li><a href="#jobs" data-ar="تصفح الوظائف" data-en="Browse Jobs" onclick="closeMenu()">تصفح الوظائف</a></li>
+                <li><a href="#employers" data-ar="إضافة وظيفة" data-en="Post a Job" onclick="closeMenu()">إضافة وظيفة</a></li>
+                <li><a href="#about" data-ar="عن المنصة" data-en="About" onclick="closeMenu()">عن المنصة</a></li>
+                <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact Us" onclick="closeMenu()">تواصل معنا</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="btn" onclick="toggleLanguage()" style="background: transparent; border: 2px solid var(--jobni-green-dark); color: var(--jobni-green-dark); padding: var(--space-xs) var(--space-sm);" title="تبديل اللغة / Switch Language">
+                    <i class="fas fa-globe"></i>
+                    <span id="langToggle">EN</span>
+                </button>
+                <a href="#" class="btn btn-outline" onclick="openModal('loginModal')" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary" onclick="openModal('registerModal')" data-ar="التسجيل" data-en="Register">التسجيل</a>
+                <a href="#employers" class="btn btn-gold" onclick="openModal('postJobModal')" style="font-size: 18px; padding: 12px 24px; box-shadow: 0 4px 12px rgba(255, 179, 0, 0.4); font-weight: 700; transform: scale(1.05); border: 2px solid rgba(255, 179, 0, 0.5);" data-ar="انشر وظيفة" data-en="Post Job">
+                    <i class="fas fa-plus-circle" style="font-size: 22px; margin-left: 8px;"></i>
+                    <span style="font-weight: 700; letter-spacing: 0.5px;">انشر وظيفة</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1 data-ar="اختر وقتك.. واشتغل" data-en="Choose Your Time.. Work">اختر وقتك.. واشتغل</h1>
+                <p data-ar="وظائف جزئية ومرنة من ساعة إلى شهر" data-en="Flexible part-time jobs from 1 hour to 1 month">وظائف جزئية ومرنة من ساعة إلى شهر</p>
+                
+                <!-- Duration Icons -->
+                <div style="display: flex; justify-content: center; gap: var(--space-md); margin: var(--space-xl) 0; flex-wrap: wrap;">
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="ساعة" data-en="1 Hour">ساعة</div>
+                    </div>
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-business-time"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="5 ساعات" data-en="5 Hours">5 ساعات</div>
+                    </div>
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="8 ساعات" data-en="8 Hours">8 ساعات</div>
+                    </div>
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="4 أيام" data-en="4 Days">4 أيام</div>
+                    </div>
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="أسبوع" data-en="1 Week">أسبوع</div>
+                    </div>
+                    <div style="text-align: center; color: rgba(255,255,255,0.9);">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xs); font-size: 24px;">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div style="font-size: 12px;" data-ar="شهر" data-en="1 Month">شهر</div>
+                    </div>
+                </div>
+                
+                <div class="hero-cta">
+                    <a href="#jobs" class="btn btn-gold btn-lg" data-ar="ابحث عن وظيفة" data-en="Search Jobs">
+                        <i class="fas fa-search"></i>
+                        <span>ابحث عن وظيفة</span>
+                    </a>
+                    <a href="#employers" class="btn btn-outline btn-lg" onclick="event.preventDefault(); openModal('postJobModal');" data-ar="انشر وظينة" data-en="Post Job">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>انشر وظيفة</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">6.8%</div>
+                    <div class="stat-label" data-ar="معدل بطالة السعوديين Q2 2025" data-en="Saudi Unemployment Rate Q2 2025">معدل بطالة السعوديين Q2 2025</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">67%</div>
+                    <div class="stat-label" data-ar="نسبة الشباب تحت 30 عام" data-en="Youth under 30 years old">نسبة الشباب تحت 30 عام</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">493.76M$</div>
+                    <div class="stat-label" data-ar="حجم سوق العمل الجزئي الخليجي 2030" data-en="GCC Gig Economy Size 2030">حجم سوق العمل الجزئي الخليجي 2030</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">142%</div>
+                    <div class="stat-label" data-ar="نمو اقتصاد العمل الحر 2023" data-en="Freelance Economy Growth 2023">نمو اقتصاد العمل الحر 2023</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">220,000+</div>
+                    <div class="stat-label" data-ar="عدد تراخيص العمل الحر 2025" data-en="Freelance Licenses 2025">عدد تراخيص العمل الحر 2025</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">5%</div>
+                    <div class="stat-label" data-ar="هدف رؤية 2030 لمعدل البطالة" data-en="Vision 2030 Unemployment Goal">هدف رؤية 2030 لمعدل البطالة</div>
+                </div>
+            </div>
+            
+            <!-- New section for target audiences -->
+            <div style="margin-top: var(--space-2xl);">
+                <div class="section-title">
+                    <h2 style="color: var(--jobni-text-dark); margin-bottom: var(--space-lg);" data-ar="من الفئات المستهدفة" data-en="Target Groups">من الفئات المستهدفة</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item fade-in-up" style="background: var(--color-bg-1);">
+                        <div style="font-size: 48px; color: var(--jobni-green-dark); margin-bottom: var(--space-sm);"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-label" style="color: var(--jobni-text-dark); font-weight: 600;" data-ar="الطلاب الجامعيين" data-en="University Students">الطلاب الجامعيين</div>
+                        <div style="font-size: var(--font-size-sm); color: var(--jobni-text-light); margin-top: var(--space-xs);" data-ar="دخل إضافي يتناسب مع جدول الدراسة" data-en="Extra income that fits study schedule">دخل إضافي يتناسب مع جدول الدراسة</div>
+                    </div>
+                    <div class="stat-item fade-in-up" style="background: var(--color-bg-2);">
+                        <div style="font-size: 48px; color: var(--jobni-blue-dark); margin-bottom: var(--space-sm);"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-label" style="color: var(--jobni-text-dark); font-weight: 600;" data-ar="الموظفين" data-en="Employees">الموظفين</div>
+                        <div style="font-size: var(--font-size-sm); color: var(--jobni-text-light); margin-top: var(--space-xs);" data-ar="مصدر دخل إضافي بجانب العمل الأساسي" data-en="Extra income alongside main job">مصدر دخل إضافي بجانب العمل الأساسي</div>
+                    </div>
+                    <div class="stat-item fade-in-up" style="background: var(--color-bg-3);">
+                        <div style="font-size: 48px; color: var(--jobni-gold); margin-bottom: var(--space-sm);"><i class="fas fa-search"></i></div>
+                        <div class="stat-label" style="color: var(--jobni-text-dark); font-weight: 600;" data-ar="الباحثين عن عمل" data-en="Job Seekers">الباحثين عن عمل</div>
+                        <div style="font-size: var(--font-size-sm); color: var(--jobni-text-light); margin-top: var(--space-xs);" data-ar="جسر للدخول في سوق العمل" data-en="Gateway to the job market">جسر للدخول في سوق العمل</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="about" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-ar="لماذا تختار منصة Jobni؟" data-en="Why Choose Jobni?">لماذا تختار منصة Jobni؟</h2>
+                <p data-ar="نوفر حلولاً متكاملة للباحثين عن عمل وأصحاب الأعمال" data-en="Complete solutions for job seekers and employers">نوفر حلولاً متكاملة للباحثين عن عمل وأصحاب الأعمال</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="البحث الذكي" data-en="Smart Search">البحث الذكي</h3>
+                    <p class="feature-description" data-ar="تصفية الوظائف حسب الموقع، المهارات، والراتب المطلوب" data-en="Filter jobs by location, skills, and desired salary">تصفية الوظائف حسب الموقع، المهارات، والراتب المطلوب</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="مرونة العمل" data-en="Work Flexibility">مرونة العمل</h3>
+                    <p class="feature-description" data-ar="وظائف دوام جزئي ومشاريع قصيرة المدى تناسب جدولك" data-en="Part-time jobs and short-term projects that fit your schedule">وظائف دوام جزئي ومشاريع قصيرة المدى تناسب جدولك</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="التوثيق الإلكتروني" data-en="Digital Documentation">التوثيق الإلكتروني</h3>
+                    <p class="feature-description" data-ar="عقود موثقة قانونياً وحماية حقوق الطرفين" data-en="Legally documented contracts protecting both parties' rights">عقود موثقة قانونياً وحماية حقوق الطرفين</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="نظام التقييم" data-en="Rating System">نظام التقييم</h3>
+                    <p class="feature-description" data-ar="تقييمات شفافة تساعد في بناء سمعة مهنية قوية" data-en="Transparent ratings help build a strong professional reputation">تقييمات شفافة تساعد في بناء سمعة مهنية قوية</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="التنبيهات الفورية" data-en="Instant Alerts">التنبيهات الفورية</h3>
+                    <p class="feature-description" data-ar="إشعارات لحظية عند توفر وظائف تناسب مؤهلاتك" data-en="Instant notifications when jobs matching your qualifications are available">إشعارات لحظية عند توفر وظائف تناسب مسهلاتك</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="إحصائيات تفصيلية" data-en="Detailed Statistics">إحصائيات تفصيلية</h3>
+                    <p class="feature-description" data-ar="تقارير شاملة لأصحاب العمل لمتابعة الأداء والنتائج" data-en="Comprehensive reports for employers to track performance and results">تقارير شاملة لأصحاب العمل لمتابعة الأداء والنتائج</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-ar="كيف تعمل منصة Jobni؟" data-en="How Does Jobni Work?">كيف تعمل منصة Jobni؟</h2>
+                <p data-ar="خطوات بسيطة للحصول على وظيفة أو موظف مناسب" data-en="Simple steps to get a job or hire the right person">خطوات بسيطة للحصول على وظيفة أو موظف مناسب</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step fade-in-up">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-ar="إنشاء حساب" data-en="Create Account">إنشاء حساب</h3>
+                    <p data-ar="سجل حسابك كباحث عن عمل أو صاحب عمل في دقائق" data-en="Register as a job seeker or employer in minutes">سجل حسابك كباحث عن عمل أو صاحب عمل في دقائق</p>
+                </div>
+                
+                <div class="step fade-in-up">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-ar="تصفح أو انشر" data-en="Browse or Post">تصفح أو انشر</h3>
+                    <p data-ar="تصفح الفرص المتاحة أو انشر وظيفتك الجديدة" data-en="Browse available opportunities or post your job">تصفح الفرص المتاحة أو انشر وظيفتك الجديدة</p>
+                </div>
+                
+                <div class="step fade-in-up">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-ar="التقديم والتوظيف" data-en="Apply & Hire">التقديم والتوظيف</h3>
+                    <p data-ar="قدم على الوظائف أو اختر المرشحين المناسبين" data-en="Apply to jobs or select suitable candidates">قدم على الوظائف أو اختر المرشحين المناسبين</p>
+                </div>
+                
+                <div class="step fade-in-up">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title" data-ar="العمل والتقييم" data-en="Work & Review">العمل والتقييم</h3>
+                    <p data-ar="ابدأ العمل مع توثيق إلكتروني وتقييم متبادل" data-en="Start work with digital documentation and mutual reviews">ابدأ العمل مع توثيق إلكتروني وتقييم متبادل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Job Listings -->
+    <section id="jobs" class="jobs">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-ar="فرص العمل المتاحة" data-en="Available Jobs">فرص العمل المتاحة</h2>
+                <p data-ar="اكتشف آلاف الفرص في مختلف القطاعات" data-en="Discover thousands of opportunities across sectors">اكتشف آلاف الفرص في مختلف القطاعات</p>
+            </div>
+            
+            <!-- Duration-based filters -->
+            <div style="margin-bottom: var(--space-lg);">
+                <h3 style="text-align: center; margin-bottom: var(--space-md); color: var(--jobni-green-dark);" data-ar="فلترة حسب المدة الزمنية" data-en="Filter by Duration">فلترة حسب المدة الزمنية</h3>
+                <div class="job-filters" style="justify-content: center;">
+                    <button class="filter-btn active" onclick="filterJobsByDuration('all')" data-ar="جميع المدد" data-en="All Durations">جميع المدد</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('hour')" data-ar="ساعة واحدة" data-en="1 Hour">ساعة واحدة</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('5hours')" data-ar="5 ساعات" data-en="5 Hours">5 ساعات</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('8hours')" data-ar="8 ساعات" data-en="8 Hours">8 ساعات</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('4days')" data-ar="4 أيام" data-en="4 Days">4 أيام</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('week')" data-ar="أسبوع" data-en="1 Week">أسبوع</button>
+                    <button class="filter-btn" onclick="filterJobsByDuration('month')" data-ar="شهر" data-en="1 Month">شهر</button>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: var(--space-lg);">
+                <h3 style="text-align: center; margin-bottom: var(--space-md); color: var(--jobni-text-light);" data-ar="فلترة حسب القطاع" data-en="Filter by Category">فلترة حسب القطاع</h3>
+                <div class="job-filters" style="justify-content: center;">
+                    <button class="filter-btn active" onclick="filterJobs('all')" data-ar="جميع القطاعات" data-en="All Categories">جميع القطاعات</button>
+                    <button class="filter-btn" onclick="filterJobs('retail')" data-ar="التجزئة" data-en="Retail">التجزئة</button>
+                    <button class="filter-btn" onclick="filterJobs('events')" data-ar="الفعاليات" data-en="Events">الفعاليات</button>
+                    <button class="filter-btn" onclick="filterJobs('tech')" data-ar="التقنية" data-en="Tech">التقنية</button>
+                    <button class="filter-btn" onclick="filterJobs('marketing')" data-ar="التسويق" data-en="Marketing">التسويق</button>
+                    <button class="filter-btn" onclick="filterJobs('hospitality')" data-ar="الضيافة" data-en="Hospitality">الضيافة</button>
+                    <button class="filter-btn" onclick="filterJobs('education')" data-ar="التعليم" data-en="Education">التعليم</button>
+                </div>
+            </div>
+            
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Job cards will be populated by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--space-xl);">
+                <a href="#" class="btn btn-primary btn-lg">عرض المزيد من الوظائف</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits by User Type Section -->
+    <section class="features" style="background: linear-gradient(135deg, var(--jobni-gray-light), rgba(255,255,255,0.9)); padding: var(--space-2xl) 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-ar="لماذا تختار العمل الجزئي المرن؟" data-en="Why Choose Flexible Part-Time Work?">لماذا تختار العمل الجزئي المرن؟</h2>
+                <p data-ar="فوائد متعددة لكل فئة من المستخدمين" data-en="Multiple benefits for each user category">فوائد متعددة لكل فئة من المستخدمين</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" style="background: linear-gradient(135deg, var(--color-bg-1), rgba(255,255,255,0.9)); border: 2px solid var(--jobni-green-light);">
+                    <div class="feature-icon" style="background: var(--jobni-green-dark);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="للطلاب الجامعيين" data-en="For University Students">للطلاب الجامعيين</h3>
+                    <ul style="text-align: right; padding-right: var(--space-md); color: var(--jobni-text-light);">
+                        <li data-ar="دخل إضافي مرن يتناسب مع جدول الدراسة" data-en="Flexible extra income that fits study schedule">دخل إضافي مرن يتناسب مع جدول الدراسة</li>
+                        <li data-ar="اكتساب خبرة عملية أثناء الدراسة" data-en="Gain practical experience during studies">اكتساب خبرة عملية أثناء الدراسة</li>
+                        <li data-ar="بناء شبكة علاقات مهنية مبكرة" data-en="Build early professional network">بناء شبكة علاقات مهنية مبكرة</li>
+                        <li data-ar="تطوير مهارات قابلة للتوظيف" data-en="Develop employable skills">تطوير مهارات قابلة للتوظيف</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, var(--color-bg-2), rgba(255,255,255,0.9)); border: 2px solid var(--jobni-blue-dark);">
+                    <div class="feature-icon" style="background: var(--jobni-blue-dark);">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="للموظفين" data-en="For Employees">للموظفين</h3>
+                    <ul style="text-align: right; padding-right: var(--space-md); color: var(--jobni-text-light);">
+                        <li data-ar="مصدر دخل إضافي بجانب الوظيفة الأساسية" data-en="Extra income source alongside main job">مصدر دخل إضافي بجانب الوظيفة الأساسية</li>
+                        <li data-ar="استغلال الوقت الحر بشكل منتج" data-en="Utilize free time productively">استغلال الوقت الحر بشكل منتج</li>
+                        <li data-ar="تنويع مصادر الدخل وتحقيق الأمان المالي" data-en="Diversify income and achieve financial security">تنويع مصادر الدخل وتحقيق الأمان المالي</li>
+                        <li data-ar="اكتساب مهارات جديدة في مجالات مختلفة" data-en="Acquire new skills in different fields">اكتساب مهارات جديدة في مجالات مختلفة</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, var(--color-bg-3), rgba(255,255,255,0.9)); border: 2px solid var(--jobni-gold);">
+                    <div class="feature-icon" style="background: var(--jobni-gold);">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title" data-ar="للباحثين عن عمل" data-en="For Job Seekers">للباحثين عن عمل</h3>
+                    <ul style="text-align: right; padding-right: var(--space-md); color: var(--jobni-text-light);">
+                        <li data-ar="جسر للدخول إلى سوق العمل" data-en="Gateway to enter the job market">جسر للدخول إلى سوق العمل</li>
+                        <li data-ar="فرصة لإثبات الكفاءة وبناء السيرة الذاتية" data-en="Opportunity to prove competence and build resume">فرصة لإثبات الكفاءة وبناء السيرة الذاتية</li>
+                        <li data-ar="دخل مستمر أثناء البحث عن وظيفة دائمة" data-en="Continuous income while searching for permanent job">دخل مستمر أثناء البحث عن وظيفة دائمة</li>
+                        <li data-ar="فرصة لاستكشاف مجالات مهنية متعددة" data-en="Opportunity to explore multiple professional fields">فرصة لاستكشاف مجالات مهنية متعددة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Employers Section -->
+    <section id="employers" class="features" style="background: var(--jobni-blue-dark); color: white;">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;" data-ar="للشركات وأصحاب الأعمال" data-en="For Companies &amp; Employers">للشركات وأصحاب الأعمال</h2>
+                <p style="color: rgba(255,255,255,0.9);" data-ar="وصل إلى آلاف المرشحين المؤهلين في دقائق" data-en="Reach thousands of qualified candidates in minutes">وصل إلى آلاف المرشحين المؤهلين في دقائق</p>
+            </div>
+            
+            <!-- Payment and Protection System Info -->
+            <div style="background: rgba(255,255,255,0.1); padding: var(--space-lg); border-radius: var(--border-radius); margin-bottom: var(--space-xl); text-align: center;">
+                <h3 style="color: var(--jobni-gold); margin-bottom: var(--space-md);" data-ar="نظام الدفع والحماية" data-en="Payment &amp; Protection System">نظام الدفع والحماية</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+                    <div>
+                        <i class="fas fa-shield-alt" style="font-size: 32px; color: var(--jobni-gold); margin-bottom: var(--space-xs);"></i>
+                        <p style="font-size: var(--font-size-sm); margin: 0;" data-ar="حجز الأجر لدى المنصة قبل بدء العمل" data-en="Salary held by platform before work starts">حجز الأجر لدى المنصة قبل بدء العمل</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-credit-card" style="font-size: 32px; color: var(--jobni-gold); margin-bottom: var(--space-xs);"></i>
+                        <p style="font-size: var(--font-size-sm); margin: 0;" data-ar="تحرير الدفع بعد تأكيد إتمام المهمة" data-en="Payment released after task confirmation">تحرير الدفع بعد تأكيد إتمام المهمة</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-file-contract" style="font-size: 32px; color: var(--jobni-gold); margin-bottom: var(--space-xs);"></i>
+                        <p style="font-size: var(--font-size-sm); margin: 0;" data-ar="عقد إلكتروني موثق لكل مهمة" data-en="Digital contract for every task">عقد إلكتروني موثق لكل مهمة</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-star" style="font-size: 32px; color: var(--jobni-gold); margin-bottom: var(--space-xs);"></i>
+                        <p style="font-size: var(--font-size-sm); margin: 0;" data-ar="نظام تقييم ثنائي الاتجاه" data-en="Two-way rating system">نظام تقييم ثنائي الاتجاه</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="feature-icon" style="background: var(--jobni-gold);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title" style="color: white;" data-ar="قاعدة مرشحين واسعة" data-en="Wide Candidate Base">قاعدة مرشحين واسعة</h3>
+                    <p class="feature-description" style="color: rgba(255,255,255,0.8);" data-ar="الوصول لآلاف الباحثين عن عمل المؤهلين" data-en="Access thousands of qualified job seekers">الوصول لآلاف الباحثين عن عمل المؤهلين</p>
+                </div>
+                
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="feature-icon" style="background: var(--jobni-gold);">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3 class="feature-title" style="color: white;" data-ar="تصفية ذكية" data-en="Smart Filtering">تصفية ذكية</h3>
+                    <p class="feature-description" style="color: rgba(255,255,255,0.8);" data-ar="نظام تصفية متقدم لاختيار المرشحين المناسبين" data-en="Advanced filtering system to select suitable candidates">نظام تصفية متقدم لاختيار المرشحين المناسبين</p>
+                </div>
+                
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="feature-icon" style="background: var(--jobni-gold);">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="feature-title" style="color: white;" data-ar="إدارة العقود" data-en="Contract Management">إدارة العقود</h3>
+                    <p class="feature-description" style="color: rgba(255,255,255,0.8);" data-ar="توثيق إلكتروني للعقود وإدارة المدفوعات" data-en="Digital contract documentation and payment management">توثيق إلكتروني للعقود وإدارة المدفوعات</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--space-xl);">
+                <a href="#" class="btn btn-gold btn-lg" onclick="openModal('postJobModal')" data-ar="انشر وظيفة جديدة" data-en="Post New Job">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>انشر وظيفة جديدة</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+                <p data-ar="نحن هنا لمساعدتك في رحلة البحث عن العمل أو التوظيف" data-en="We're here to help you in your job search or hiring journey">نحن هنا لمساعدتك في رحلة البحث عن العمل أو التوظيف</p>
+            </div>
+            
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label class="form-label" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                    <input type="text" class="form-input" id="contactName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" id="contactEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="نوع الاستفسار" data-en="Inquiry Type">نوع الاستفسار</label>
+                    <select class="form-select" id="contactSubject" required>
+                        <option value="" data-ar="اختر نوع الاستفسار" data-en="Select inquiry type">اختر نوع الاستفسار</option>
+                        <option value="job-seeker" data-ar="باحث عن عمل" data-en="Job Seeker">باحث عن عمل</option>
+                        <option value="employer" data-ar="صاحب عمل" data-en="Employer">صاحب عمل</option>
+                        <option value="technical" data-ar="مشكلة تقنية" data-en="Technical Issue">مشكلة تقنية</option>
+                        <option value="partnership" data-ar="شراكة" data-en="Partnership">شراكة</option>
+                        <option value="other" data-ar="أخرى" data-en="Other">أخرى</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="الرسالة" data-en="Message">الرسالة</label>
+                    <textarea class="form-textarea" id="contactMessage" data-ar="اكتب رسالتك هنا..." data-en="Write your message here..." placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg btn-full-width" data-ar="إرسال الرسالة" data-en="Send Message">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>إرسال الرسالة</span>
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: var(--space-md);">
+                        <div class="logo-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1 class="logo-title" style="color: white;">Jobni</h1>
+                            <p class="logo-subtitle">منصة العمل الجزئي الوطنية</p>
+                        </div>
+                    </div>
+                    <p data-ar="منصة سعودية رائدة تهدف إلى ربط أصحاب العمل بالباحثين عن فرص عمل مرنة ومناسبة، دعماً لرؤية المملكة 2030." data-en="A leading Saudi platform connecting employers with job seekers for flexible opportunities, supporting Vision 2030.">منصة سعودية رائدة تهدف إلى ربط أصحاب العمل بالباحثين عن فرص عمل مرنة ومناسبة، دعماً لرؤية المملكة 2030.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="#jobs" data-ar="الوظائف" data-en="Jobs">الوظائف</a></li>
+                        <li><a href="#employers" data-ar="لأصحاب العمل" data-en="For Employers">لأصحاب العمل</a></li>
+                        <li><a href="#about" data-ar="عن المنصة" data-en="About">عن المنصة</a></li>
+                        <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-ar="الخدمات" data-en="Services">الخدمات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#jobs" data-ar="البحث عن وظائف" data-en="Search Jobs">البحث عن وظائف</a></li>
+                        <li><a href="#employers" data-ar="نشر الوظائف" data-en="Post Jobs">نشر الوظائف</a></li>
+                        <li><a href="#" data-ar="إدارة الحسابات" data-en="Account Management">إدارة الحسابات</a></li>
+                        <li><a href="#" data-ar="التوثيق الإلكتروني" data-en="Digital Documentation">التوثيق الإلكتروني</a></li>
+                        <li><a href="#" data-ar="نظام التقييم" data-en="Rating System">نظام التقييم</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-ar="تابعنا" data-en="Follow Us">تابعنا</h3>
+                    <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                        <a href="https://x.com/JobniWork" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="تابعنا على X - Follow us on X" aria-label="تابعنا على X">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon-link" title="Instagram" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon-link" title="LinkedIn" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon-link" title="YouTube" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <p style="margin-top: var(--space-md);">
+                        <span data-ar="البريد الإلكتروني:" data-en="Email:">البريد الإلكتروني:</span><br>
+                        <a href="mailto:job.ni@outlook.com" style="color: var(--jobni-gold);">job.ni@outlook.com</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-ar="&copy; 2025 Jobni. جميع الحقوق محفوظة." data-en="&copy; 2025 Jobni. All rights reserved.">&copy; 2025 Jobni. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2 style="margin-bottom: var(--space-lg); text-align: center; color: var(--jobni-green-dark);" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: var(--space-md);" data-ar="تسجيل الدخول" data-en="Login">
+                    <span>تسجيل الدخول</span>
+                </button>
+                
+                <div style="text-align: center;">
+                    <a href="#" onclick="closeModal('loginModal'); openModal('registerModal');" data-ar="ليس لديك حساب؟ سجل الآن" data-en="Don't have an account? Register now">ليس لديك حساب؟ سجل الآن</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2 style="margin-bottom: var(--space-lg); text-align: center; color: var(--jobni-green-dark);" data-ar="إنشاء حساب جديد" data-en="Create New Account">إنشاء حساب جديد</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label class="form-label" data-ar="نوع الحساب" data-en="Account Type">نوع الحساب</label>
+                    <select class="form-select" required>
+                        <option value="" data-ar="اختر نوع الحساب" data-en="Select account type">اختر نوع الحساب</option>
+                        <option value="jobseeker" data-ar="باحث عن عمل" data-en="Job Seeker">باحث عن عمل</option>
+                        <option value="employer" data-ar="صاحب عمل" data-en="Employer">صاحب عمل</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: var(--space-md);" data-ar="إنشاء الحساب" data-en="Create Account">
+                    <span>إنشاء الحساب</span>
+                </button>
+                
+                <div style="text-align: center;">
+                    <a href="#" onclick="closeModal('registerModal'); openModal('loginModal');" data-ar="لديك حساب بالفعل؟ سجل دخولك" data-en="Already have an account? Login">لديك حساب بالفعل؟ سجل دخولك</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Job Details Modal -->
+    <div id="jobDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('jobDetailsModal')">&times;</span>
+            <h2 id="jobDetailTitle" style="margin-bottom: var(--space-md); color: var(--jobni-green-dark);"></h2>
+            
+            <div style="background: var(--jobni-gray-light); padding: var(--space-md); border-radius: var(--border-radius); margin-bottom: var(--space-md);">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md);">
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">الشركة</div>
+                        <div id="jobDetailCompany" style="font-size: var(--font-size-lg); color: var(--jobni-text-dark);"></div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">الموقع</div>
+                        <div id="jobDetailLocation" style="font-size: var(--font-size-lg); color: var(--jobni-text-dark);"></div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">المدة</div>
+                        <div id="jobDetailDuration" style="font-size: var(--font-size-lg); color: var(--jobni-text-dark);"></div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">الراتب</div>
+                        <div id="jobDetailSalary" style="font-size: var(--font-size-lg); color: var(--jobni-green-dark); font-weight: 700;"></div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">موعد الدفع</div>
+                        <div id="jobDetailPayment" style="font-size: var(--font-size-lg); color: var(--jobni-text-dark);"></div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--jobni-text-light); font-size: var(--font-size-sm);">نوع العمل</div>
+                        <div id="jobDetailType" style="font-size: var(--font-size-lg); color: var(--jobni-text-dark);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: var(--space-xl);">
+                <h3 style="margin-bottom: var(--space-sm); color: var(--jobni-text-dark);">وصف الوظيفة</h3>
+                <p id="jobDetailDescription" style="color: var(--jobni-text-light); line-height: 1.8;"></p>
+            </div>
+            
+            <div style="display: flex; gap: var(--space-sm);">
+                <button class="btn btn-primary btn-lg" onclick="closeModal('jobDetailsModal'); applyToJob(currentJobDetailsId);" style="flex: 1;" data-ar="قدم على الوظيفة" data-en="Apply for Job">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>قدم على الوظيفة</span>
+                </button>
+                <button class="btn btn-outline btn-lg" onclick="closeModal('jobDetailsModal');" data-ar="إغلاق" data-en="Close">
+                    <span>إغلاق</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Post Job Modal -->
+    <div id="postJobModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('postJobModal')">&times;</span>
+            <h2 style="margin-bottom: var(--space-lg); text-align: center; color: var(--jobni-green-dark);" data-ar="نشر وظيفة جديدة" data-en="Post New Job">نشر وظيفة جديدة</h2>
+            <form onsubmit="handlePostJob(event)">
+                <div class="form-group">
+                    <label class="form-label" data-ar="عنوان الوظيفة" data-en="Job Title">عنوان الوظيفة</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="اسم الشركة" data-en="Company Name">اسم الشركة</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="القطاع" data-en="Category">القطاع</label>
+                    <select class="form-select" required>
+                        <option value="" data-ar="اختر القطاع" data-en="Select Category">اختر القطاع</option>
+                        <option value="retail" data-ar="التجزئة والمقاهي" data-en="Retail &amp; Cafes">التجزئة والمقاهي</option>
+                        <option value="events" data-ar="الفعاليات والمناسبات" data-en="Events">الفعاليات والمناسبات</option>
+                        <option value="tech" data-ar="التقنية والبرمجة" data-en="Tech &amp; Programming">التقنية والبرمجة</option>
+                        <option value="marketing" data-ar="التسويق الرقمي" data-en="Digital Marketing">التسويق الرقمي</option>
+                        <option value="hospitality" data-ar="الضيافة والسياحة" data-en="Hospitality">الضيافة والسياحة</option>
+                        <option value="education" data-ar="التعليم والتدريب" data-en="Education">التعليم والتدريب</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="الموقع" data-en="Location">الموقع</label>
+                    <select class="form-select" required>
+                        <option value="" data-ar="اختر المدينة" data-en="Select City">اختر المدينة</option>
+                        <option value="riyadh" data-ar="الرياض" data-en="Riyadh">الرياض</option>
+                        <option value="jeddah" data-ar="جدة" data-en="Jeddah">جدة</option>
+                        <option value="dammam" data-ar="الدمام" data-en="Dammam">الدمام</option>
+                        <option value="makkah" data-ar="مكة المكرمة" data-en="Makkah">مكة المكرمة</option>
+                        <option value="madinah" data-ar="المدينة المنورة" data-en="Madinah">المدينة المنورة</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="مدة العمل" data-en="Duration">مدة العمل</label>
+                    <select class="form-select" required>
+                        <option value="" data-ar="اختر مدة العمل" data-en="Select Duration">اختر مدة العمل</option>
+                        <option value="hour" data-ar="ساعة واحدة" data-en="1 Hour">ساعة واحدة</option>
+                        <option value="5hours" data-ar="5 ساعات" data-en="5 Hours">5 ساعات</option>
+                        <option value="8hours" data-ar="8 ساعات (يوم كامل)" data-en="8 Hours (Full Day)">8 ساعات (يوم كامل)</option>
+                        <option value="4days" data-ar="4 أيام" data-en="4 Days">4 أيام</option>
+                        <option value="week" data-ar="أسبوع واحد" data-en="1 Week">أسبوع واحد</option>
+                        <option value="month" data-ar="شهر أو أكثر" data-en="1 Month or More">شهر أو أكثر</option>
+                        <option value="flexible" data-ar="مرن (مفتوح)" data-en="Flexible (Open)">مرن (مفتوح)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="موعد الدفع" data-en="Payment Schedule">موعد الدفع</label>
+                    <select class="form-select" required>
+                        <option value="" data-ar="اختر موعد الدفع" data-en="Select Payment Schedule">اختر موعد الدفع</option>
+                        <option value="immediate" data-ar="فوري بعد الانتهاء" data-en="Immediate After Completion">فوري بعد الانتهاء</option>
+                        <option value="daily" data-ar="يومي" data-en="Daily">يومي</option>
+                        <option value="weekly" data-ar="أسبوعي" data-en="Weekly">أسبوعي</option>
+                        <option value="monthly" data-ar="شهري" data-en="Monthly">شهري</option>
+                        <option value="project-end" data-ar="عند انتهاء المشروع" data-en="Upon Project Completion">عند انتهاء المشروع</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="الراتب" data-en="Salary">الراتب</label>
+                    <input type="text" class="form-input" data-ar="مثال: 3000 ريال شهرياً" data-en="Example: 3000 SAR/month" placeholder="مثال: 3000 ريال شهرياً" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="وصف الوظيفة" data-en="Job Description">وصف الوظيفة</label>
+                    <textarea class="form-textarea" data-ar="اكتب وصفاً تفصيلياً للوظيفة والمهام المطلوبة..." data-en="Write a detailed job description and required tasks..." placeholder="اكتب وصفاً تفصيلياً للوظيفة والمهام المطلوبة..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-ar="نشر الوظيفة" data-en="Post Job">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>نشر الوظيفة</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Global state management (no localStorage/sessionStorage)
+        let currentUser = null;
+        let savedJobs = [];
+        let appliedJobs = [];
+        let postedJobs = [];
+        let currentLanguage = 'ar'; // Default language
+        
+        // Updated sample job data with bilingual support
+        const sampleJobs = [
+            {
+                id: 1,
+                title_ar: "مساعد مبيعات في معرض تقني",
+                title_en: "Sales Assistant at Tech Expo",
+                company_ar: "شركة التقنية الحديثة",
+                company_en: "Modern Tech Company",
+                location_ar: "الرياض",
+                location_en: "Riyadh",
+                salary_ar: "400 ريال",
+                salary_en: "400 SAR",
+                type_ar: "يوم واحد",
+                type_en: "1 Day",
+                category: "retail",
+                duration_ar: "8 ساعات",
+                duration_en: "8 Hours",
+                durationCategory: "8hours",
+                payment_ar: "فوري بعد الانتهاء",
+                payment_en: "Immediate after completion",
+                tags_ar: ["مبيعات", "8 ساعات", "دفع فوري"],
+                tags_en: ["Sales", "8 Hours", "Immediate Pay"]
+            },
+            {
+                id: 2,
+                title_ar: "توصيل طلبات - فترة مسائية",
+                title_en: "Delivery Driver - Evening Shift",
+                company_ar: "تطبيق التوصيل السريع",
+                company_en: "Quick Delivery App",
+                location_ar: "جدة",
+                location_en: "Jeddah",
+                salary_ar: "120 ريال/ساعة",
+                salary_en: "120 SAR/hour",
+                type_ar: "مرن",
+                type_en: "Flexible",
+                category: "hospitality",
+                duration_ar: "5 ساعات",
+                duration_en: "5 Hours",
+                durationCategory: "5hours",
+                payment_ar: "يومي",
+                payment_en: "Daily",
+                tags_ar: ["توصيل", "5 ساعات", "مرن"],
+                tags_en: ["Delivery", "5 Hours", "Flexible"]
+            },
+            {
+                id: 3,
+                title_ar: "منسق فعالية - مهرجان صيفي",
+                title_en: "Event Coordinator - Summer Festival",
+                company_ar: "الهيئة العامة للترفيه",
+                company_en: "General Entertainment Authority",
+                location_ar: "الدمام",
+                location_en: "Dammam",
+                salary_ar: "3000 ريال",
+                salary_en: "3000 SAR",
+                type_ar: "قصير المدى",
+                type_en: "Short-term",
+                category: "events",
+                duration_ar: "4 أيام",
+                duration_en: "4 Days",
+                durationCategory: "4days",
+                payment_ar: "بعد انتهاء الفعالية",
+                payment_en: "After event completion",
+                tags_ar: ["تنسيق", "4 أيام", "فعاليات"],
+                tags_en: ["Coordination", "4 Days", "Events"]
+            },
+            {
+                id: 4,
+                title_ar: "مدرب لياقة بدنية - نهاية الأسبوع",
+                title_en: "Fitness Trainer - Weekends",
+                company_ar: "نادي اللياقة الذهبي",
+                company_en: "Golden Fitness Club",
+                location_ar: "الخبر",
+                location_en: "Khobar",
+                salary_ar: "150 ريال/جلسة",
+                salary_en: "150 SAR/session",
+                type_ar: "جزئي متكرر",
+                type_en: "Part-time recurring",
+                category: "hospitality",
+                duration_ar: "كل أسبوع",
+                duration_en: "Weekly",
+                durationCategory: "week",
+                payment_ar: "أسبوعي",
+                payment_en: "Weekly",
+                tags_ar: ["تدريب", "أسبوعي", "رياضة"],
+                tags_en: ["Training", "Weekly", "Fitness"]
+            },
+            {
+                id: 5,
+                title_ar: "مصمم جرافيك - مشروع إعلاني",
+                title_en: "Graphic Designer - Ad Project",
+                company_ar: "وكالة الإبداع الرقمي",
+                company_en: "Digital Creativity Agency",
+                location_ar: "عن بعد",
+                location_en: "Remote",
+                salary_ar: "2500 ريال",
+                salary_en: "2500 SAR",
+                type_ar: "مشروع",
+                type_en: "Project",
+                category: "marketing",
+                duration_ar: "أسبوع واحد",
+                duration_en: "1 Week",
+                durationCategory: "week",
+                payment_ar: "عند التسليم",
+                payment_en: "Upon delivery",
+                tags_ar: ["تصميم", "أسبوع", "عن بعد"],
+                tags_en: ["Design", "1 Week", "Remote"]
+            },
+            {
+                id: 6,
+                title_ar: "معلم لغة إنجليزية - دروس خصوصية",
+                title_en: "English Teacher - Private Lessons",
+                company_ar: "مستقل",
+                company_en: "Freelance",
+                location_ar: "الرياض",
+                location_en: "Riyadh",
+                salary_ar: "5000 ريال/شهر",
+                salary_en: "5000 SAR/month",
+                type_ar: "دوام جزئي",
+                type_en: "Part-time",
+                category: "education",
+                duration_ar: "شهر",
+                duration_en: "1 Month",
+                durationCategory: "month",
+                payment_ar: "شهري",
+                payment_en: "Monthly",
+                tags_ar: ["تعليم", "شهري", "إنجليزي"],
+                tags_en: ["Education", "Monthly", "English"]
+            },
+            {
+                id: 7,
+                title_ar: "خدمة عملاء - ساعة واحدة",
+                title_en: "Customer Service - 1 Hour",
+                company_ar: "مركز الاتصالات",
+                company_en: "Call Center",
+                location_ar: "جدة",
+                location_en: "Jeddah",
+                salary_ar: "80 ريال",
+                salary_en: "80 SAR",
+                type_ar: "ساعة واحدة",
+                type_en: "1 Hour",
+                category: "retail",
+                duration_ar: "ساعة",
+                duration_en: "1 Hour",
+                durationCategory: "hour",
+                payment_ar: "فوري",
+                payment_en: "Immediate",
+                tags_ar: ["خدمة عملاء", "ساعة", "فوري"],
+                tags_en: ["Customer Service", "1 Hour", "Immediate"]
+            },
+            {
+                id: 8,
+                title_ar: "مساعد في فعالية - ساعة",
+                title_en: "Event Assistant - 1 Hour",
+                company_ar: "شركة الفعاليات",
+                company_en: "Events Company",
+                location_ar: "الرياض",
+                location_en: "Riyadh",
+                salary_ar: "100 ريال",
+                salary_en: "100 SAR",
+                type_ar: "ساعة واحدة",
+                type_en: "1 Hour",
+                category: "events",
+                duration_ar: "ساعة",
+                duration_en: "1 Hour",
+                durationCategory: "hour",
+                payment_ar: "فوري",
+                payment_en: "Immediate",
+                tags_ar: ["مساعدة", "ساعة", "فوري"],
+                tags_en: ["Assistant", "1 Hour", "Immediate"]
+            }
+        ];
+        
+        let currentJobs = [...sampleJobs];
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Enhanced form handlers with proper validation
+        function handleLogin(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            
+            if (!email || !password) {
+                const msg = currentLanguage === 'ar' ? 'يرجى إدخال جميع البيانات المطلوبة' : 'Please enter all required data';
+                alert(msg);
+                return;
+            }
+            
+            // Simulate login process
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const loadingText = currentLanguage === 'ar' ? 'جاري تسجيل الدخول...' : 'Logging in...';
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = loadingText;
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                const msg = currentLanguage === 'ar' ? `مرحباً بك! تم تسجيل الدخول بنجاح\nالبريد: ${email}` : `Welcome! Login successful\nEmail: ${email}`;
+                showSuccessMessage(msg);
+                currentUser = { email };
+                form.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                closeModal('loginModal');
+            }, 1500);
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            const form = event.target;
+            const accountType = form.querySelector('select').value;
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            
+            if (!accountType || !name || !email || !phone || !password) {
+                const msg = currentLanguage === 'ar' ? 'يرجى إدخال جميع البيانات المطلوبة' : 'Please enter all required data';
+                alert(msg);
+                return;
+            }
+            
+            if (password.length < 6) {
+                const msg = currentLanguage === 'ar' ? 'يجب أن تكون كلمة المرور 6 أحرف على الأقل' : 'Password must be at least 6 characters';
+                alert(msg);
+                return;
+            }
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const loadingText = currentLanguage === 'ar' ? 'جاري إنشاء الحساب...' : 'Creating account...';
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = loadingText;
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                const userType = currentLanguage === 'ar' ? (accountType === 'jobseeker' ? 'باحث عن عمل' : 'صاحب عمل') : (accountType === 'jobseeker' ? 'Job Seeker' : 'Employer');
+                const msg = currentLanguage === 'ar' ? `مرحباً ${name}!\nتم إنشاء حسابك ك${userType} بنجاح\nسيتم إرسال رمز تفعيل لـ ${phone}` : `Welcome ${name}!\nYour account as ${userType} has been created successfully\nActivation code will be sent to ${phone}`;
+                showSuccessMessage(msg);
+                currentUser = { name, email, accountType };
+                form.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                closeModal('registerModal');
+            }, 2000);
+        }
+        
+        function handlePostJob(event) {
+            event.preventDefault();
+            const form = event.target;
+            const inputs = form.querySelectorAll('input[type="text"]');
+            const selects = form.querySelectorAll('select');
+            
+            const title = inputs[0].value;
+            const company = inputs[1].value;
+            const category = selects[0].value;
+            const location = selects[1].value;
+            const duration = selects[2].value;
+            const payment = selects[3].value;
+            const salary = form.querySelector('input[placeholder*="ريال"]').value;
+            const description = form.querySelector('textarea').value;
+            
+            if (!title || !company || !category || !location || !duration || !payment || !salary || !description) {
+                alert('يرجى إدخال جميع البيانات المطلوبة');
+                return;
+            }
+            
+            if (!currentUser) {
+                alert('يرجى تسجيل الدخول أولاً لنشر الوظائف');
+                closeModal('postJobModal');
+                openModal('loginModal');
+                return;
+            }
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'جاري نشر الوظيفة...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Add to posted jobs
+                const newJob = {
+                    id: sampleJobs.length + 1,
+                    title,
+                    company,
+                    location,
+                    category,
+                    duration,
+                    payment,
+                    salary,
+                    description,
+                    type: getDurationLabel(duration),
+                    durationCategory: duration,
+                    tags: [category, duration, payment],
+                    postedDate: new Date().toLocaleDateString('ar-SA'),
+                    postedBy: currentUser.name
+                };
+                
+                postedJobs.push(newJob);
+                sampleJobs.push(newJob);
+                currentJobs = [...sampleJobs];
+                
+                showSuccessMessage(`تم نشر وظيفة "${title}" بنجاح! سيتم عرضها للباحثين عن العمل فوراً.`);
+                
+                form.reset();
+                submitBtn.textContent = 'نشر الوظيفة';
+                submitBtn.disabled = false;
+                closeModal('postJobModal');
+                
+                // Scroll to jobs section and update
+                document.getElementById('jobs').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => renderJobs(), 500);
+            }, 2000);
+        }
+        
+        function getDurationLabel(duration) {
+            const labels = {
+                'hour': 'ساعة واحدة',
+                '5hours': '5 ساعات',
+                '8hours': 'يوم واحد',
+                '4days': '4 أيام',
+                'week': 'أسبوع',
+                'month': 'شهر',
+                'flexible': 'مرن'
+            };
+            return labels[duration] || duration;
+        }
+        
+        function submitContactForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const subject = form.querySelector('select').value;
+            const message = form.querySelector('textarea').value;
+            
+            if (!name || !email || !subject || !message) {
+                const msg = currentLanguage === 'ar' ? 'يرجى إدخال جميع البيانات المطلوبة' : 'Please enter all required data';
+                alert(msg);
+                return;
+            }
+            
+            // Get subject label
+            const subjectLabels = {
+                'job-seeker': currentLanguage === 'ar' ? 'باحث عن عمل' : 'Job Seeker',
+                'employer': currentLanguage === 'ar' ? 'صاحب عمل' : 'Employer',
+                'technical': currentLanguage === 'ar' ? 'مشكلة تقنية' : 'Technical Issue',
+                'partnership': currentLanguage === 'ar' ? 'شراكة' : 'Partnership',
+                'other': currentLanguage === 'ar' ? 'أخرى' : 'Other'
+            };
+            
+            const subjectLabel = subjectLabels[subject] || subject;
+            
+            // Prepare mailto link
+            const mailtoSubject = encodeURIComponent(`رسالة من موقع Jobni - ${subjectLabel}`);
+            const mailtoBody = encodeURIComponent(
+                `الاسم / Name: ${name}\n` +
+                `البريد الإلكتروني / Email: ${email}\n` +
+                `نوع الاستفسار / Inquiry Type: ${subjectLabel}\n\n` +
+                `الرسالة / Message:\n${message}`
+            );
+            
+            // Open default email client
+            window.location.href = `mailto:job.ni@outlook.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+            
+            // Show success message
+            const msg = currentLanguage === 'ar' ? 
+                `شكراً ${name}! سيتم فتح برنامج البريد الإلكتروني لإرسال رسالتك إلى job.ni@outlook.com` : 
+                `Thank you ${name}! Your email client will open to send your message to job.ni@outlook.com`;
+            showSuccessMessage(msg);
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                form.reset();
+            }, 1000);
+        }
+        
+        // Job filtering
+        // Duration-based filtering
+        function filterJobsByDuration(duration) {
+            const durationFilterBtns = document.querySelectorAll('.job-filters')[0].querySelectorAll('.filter-btn');
+            durationFilterBtns.forEach(btn => btn.classList.remove('active'));
+            
+            if (duration === 'all') {
+                currentJobs = [...sampleJobs];
+                durationFilterBtns[0].classList.add('active');
+            } else {
+                currentJobs = sampleJobs.filter(job => job.durationCategory === duration);
+                const targetBtn = Array.from(durationFilterBtns).find(btn => 
+                    btn.textContent.includes(getDurationName(duration))
+                );
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+            
+            renderJobs();
+        }
+        
+        function getDurationName(duration) {
+            const durationNames = {
+                'hour': 'ساعة',
+                '5hours': '5 ساعات',
+                '8hours': '8 ساعات',
+                '4days': '4 أيام',
+                'week': 'أسبوع',
+                'month': 'شهر'
+            };
+            return durationNames[duration] || duration;
+        }
+        
+        function filterJobs(category) {
+            const categoryFilterBtns = document.querySelectorAll('.job-filters')[1].querySelectorAll('.filter-btn');
+            categoryFilterBtns.forEach(btn => btn.classList.remove('active'));
+            
+            if (category === 'all') {
+                currentJobs = [...sampleJobs];
+                categoryFilterBtns[0].classList.add('active');
+            } else {
+                currentJobs = sampleJobs.filter(job => job.category === category);
+                const targetBtn = Array.from(categoryFilterBtns).find(btn => 
+                    btn.textContent.includes(getCategoryName(category))
+                );
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+            
+            renderJobs();
+        }
+        
+        function getCategoryName(category) {
+            const categoryNames = {
+                'retail': 'التجزئة',
+                'events': 'الفعاليات',
+                'tech': 'التقنية',
+                'marketing': 'التسويق',
+                'hospitality': 'الضيافة',
+                'education': 'التعليم'
+            };
+            return categoryNames[category] || category;
+        }
+        
+        // Apply to job function
+        function applyToJob(jobId) {
+            const job = sampleJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            const title = currentLanguage === 'ar' ? job.title_ar || job.title : job.title_en || job.title;
+            
+            if (!currentUser) {
+                const msg = currentLanguage === 'ar' ? 'يرجى تسجيل الدخول أولاً للتقديم على الوظائف' : 'Please login first to apply for jobs';
+                alert(msg);
+                openModal('loginModal');
+                return;
+            }
+            
+            // Check if already applied
+            if (appliedJobs.some(j => j.id === jobId)) {
+                const msg = currentLanguage === 'ar' ? 'لقد قدمت على هذه الوظيفة مسبقاً' : 'You have already applied to this job';
+                alert(msg);
+                return;
+            }
+            
+            appliedJobs.push({...job, appliedDate: new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US')});
+            
+            // Success message
+            const msg = currentLanguage === 'ar' ? `تم التقديم على وظيفة "${title}" بنجاح! سيتم التواصل معك قريباً.` : `Successfully applied to "${title}"! We will contact you soon.`;
+            showSuccessMessage(msg);
+        }
+        
+        // Save job function
+        function saveJob(jobId) {
+            const job = sampleJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            const title = currentLanguage === 'ar' ? job.title_ar || job.title : job.title_en || job.title;
+            
+            if (!currentUser) {
+                const msg = currentLanguage === 'ar' ? 'يرجى تسجيل الدخول أولاً لحفظ الوظائف' : 'Please login first to save jobs';
+                alert(msg);
+                openModal('loginModal');
+                return;
+            }
+            
+            // Check if already saved
+            if (savedJobs.some(j => j.id === jobId)) {
+                // Remove from saved
+                savedJobs = savedJobs.filter(j => j.id !== jobId);
+                const msg = currentLanguage === 'ar' ? `تم إلغاء حفظ وظيفة "${title}"` : `Removed "${title}" from saved jobs`;
+                showSuccessMessage(msg);
+            } else {
+                savedJobs.push({...job, savedDate: new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US')});
+                const msg = currentLanguage === 'ar' ? `تم حفظ وظيفة "${title}" في قائمتك المفضلة` : `Saved "${title}" to your favorites`;
+                showSuccessMessage(msg);
+            }
+            
+            renderJobs();
+        }
+        
+        // Global variable to store current job details ID
+        let currentJobDetailsId = null;
+        
+        // Show job details
+        function showJobDetails(jobId) {
+            const job = sampleJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            currentJobDetailsId = jobId;
+            
+            const detailsModal = document.getElementById('jobDetailsModal');
+            if (!detailsModal) return;
+            
+            // Get correct language fields
+            const title = currentLanguage === 'ar' ? job.title_ar || job.title : job.title_en || job.title;
+            const company = currentLanguage === 'ar' ? job.company_ar || job.company : job.company_en || job.company;
+            const location = currentLanguage === 'ar' ? job.location_ar || job.location : job.location_en || job.location;
+            const duration = currentLanguage === 'ar' ? job.duration_ar || job.duration : job.duration_en || job.duration;
+            const salary = currentLanguage === 'ar' ? job.salary_ar || job.salary : job.salary_en || job.salary;
+            const payment = currentLanguage === 'ar' ? job.payment_ar || job.payment : job.payment_en || job.payment;
+            const type = currentLanguage === 'ar' ? job.type_ar || job.type : job.type_en || job.type;
+            
+            document.getElementById('jobDetailTitle').textContent = title;
+            document.getElementById('jobDetailCompany').textContent = company;
+            document.getElementById('jobDetailLocation').textContent = location;
+            document.getElementById('jobDetailDuration').textContent = duration;
+            document.getElementById('jobDetailSalary').textContent = salary;
+            document.getElementById('jobDetailPayment').textContent = payment;
+            document.getElementById('jobDetailType').textContent = type;
+            
+            const description = getJobDescription(job.category, title);
+            document.getElementById('jobDetailDescription').textContent = description;
+            
+            openModal('jobDetailsModal');
+        }
+        
+        function getJobDescription(category, title) {
+            if (currentLanguage === 'ar') {
+                const descriptions = {
+                    'retail': 'مطلوب للعمل في مجال التجزئة. المهام تشمل التعامل مع العملاء، إدارة المنتجات، والمساعدة في عمليات البيع.',
+                    'events': 'مطلوب للعمل في تنسيق وإدارة الفعاليات. المهام تشمل التخطيط، التنسيق مع الفرق، واستقبال الضيوف.',
+                    'tech': 'مطلوب للعمل في مجال التقنية. المهام تشمل البرمجة، التصميم، أو الدعم الفني حسب التخصص.',
+                    'marketing': 'مطلوب للعمل في مجال التسويق الرقمي. المهام تشمل إدارة الحملات، إنشاء المحتوى، وتحليل الأداء.',
+                    'hospitality': 'مطلوب للعمل في مجال الضيافة. المهام تشمل خدمة العملاء، التدريب، أو التوصيل.',
+                    'education': 'مطلوب للعمل في مجال التعليم. المهام تشمل التدريس، إعداد المواد التعليمية، وتقييم الطلاب.'
+                };
+                return descriptions[category] || 'وصف تفصيلي للوظيفة والمهام المطلوبة.';
+            } else {
+                const descriptions = {
+                    'retail': 'Required to work in retail. Tasks include customer service, product management, and assisting with sales operations.',
+                    'events': 'Required to work in event coordination and management. Tasks include planning, team coordination, and guest reception.',
+                    'tech': 'Required to work in technology. Tasks include programming, design, or technical support depending on specialization.',
+                    'marketing': 'Required to work in digital marketing. Tasks include campaign management, content creation, and performance analysis.',
+                    'hospitality': 'Required to work in hospitality. Tasks include customer service, training, or delivery.',
+                    'education': 'Required to work in education. Tasks include teaching, preparing educational materials, and student assessment.'
+                };
+                return descriptions[category] || 'Detailed job description and required tasks.';
+            }
+        }
+        
+        // Success message function
+        function showSuccessMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, var(--jobni-green-dark), var(--jobni-green-light));
+                color: white;
+                padding: var(--space-md);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-lg);
+                z-index: 9999;
+                max-width: 400px;
+                animation: slideIn 0.3s ease-out;
+            `;
+            messageDiv.innerHTML = `
+                <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                    <i class="fas fa-check-circle" style="font-size: 24px;"></i>
+                    <div>${message}</div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 3000);
+        }
+        
+        // Render jobs with bilingual support
+        function renderJobs() {
+            const jobsGrid = document.getElementById('jobsGrid');
+            
+            if (currentJobs.length === 0) {
+                const emptyMsg = currentLanguage === 'ar' ? 'لا توجد وظائف متاحة في هذا القطاع حالياً' : 'No jobs available in this category currently';
+                jobsGrid.innerHTML = '<div style="text-align: center; grid-column: 1 / -1; color: var(--jobni-text-light); padding: var(--space-2xl);"><i class="fas fa-search" style="font-size: 48px; margin-bottom: var(--space-md); opacity: 0.3;"></i><br>' + emptyMsg + '</div>';
+                return;
+            }
+            
+            jobsGrid.innerHTML = currentJobs.map(job => {
+                const isSaved = savedJobs.some(j => j.id === job.id);
+                const isApplied = appliedJobs.some(j => j.id === job.id);
+                
+                // Get correct language fields
+                const title = currentLanguage === 'ar' ? job.title_ar || job.title : job.title_en || job.title;
+                const company = currentLanguage === 'ar' ? job.company_ar || job.company : job.company_en || job.company;
+                const location = currentLanguage === 'ar' ? job.location_ar || job.location : job.location_en || job.location;
+                const salary = currentLanguage === 'ar' ? job.salary_ar || job.salary : job.salary_en || job.salary;
+                const duration = currentLanguage === 'ar' ? job.duration_ar || job.duration : job.duration_en || job.duration;
+                const payment = currentLanguage === 'ar' ? job.payment_ar || job.payment : job.payment_en || job.payment;
+                const type = currentLanguage === 'ar' ? job.type_ar || job.type : job.type_en || job.type;
+                const tags = currentLanguage === 'ar' ? job.tags_ar || job.tags : job.tags_en || job.tags;
+                const appliedText = currentLanguage === 'ar' ? 'تم التقديم' : 'Applied';
+                const applyText = currentLanguage === 'ar' ? 'قدم الآن' : 'Apply Now';
+                const saveText = currentLanguage === 'ar' ? (isSaved ? 'محفوظة' : 'حفظ') : (isSaved ? 'Saved' : 'Save');
+                const detailsText = currentLanguage === 'ar' ? 'تفاصيل' : 'Details';
+                
+                return `
+                <div class="job-card" style="${isApplied ? 'border-color: var(--jobni-green-light); background: var(--color-bg-3);' : ''}">
+                    ${isApplied ? `<div style="background: var(--jobni-green-light); color: white; padding: 4px var(--space-sm); border-radius: 6px; font-size: 12px; position: absolute; top: 10px; ${currentLanguage === 'ar' ? 'left' : 'right'}: 10px;"><i class="fas fa-check"></i> ${appliedText}</div>` : ''}
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">${title}</h3>
+                            <p class="job-company"><i class="fas fa-building" style="margin-${currentLanguage === 'ar' ? 'left' : 'right'}: 5px;"></i>${company}</p>
+                        </div>
+                        <div class="job-salary">${salary}</div>
+                    </div>
+                    
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${location}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>${duration}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="job-details" style="margin-top: var(--space-xs);">
+                        <div class="job-detail">
+                            <i class="fas fa-credit-card"></i>
+                            <span>${payment}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>${type}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="job-tags">
+                        ${tags.map(tag => `<span class="job-tag"><i class="fas fa-tag" style="font-size: 10px; margin-${currentLanguage === 'ar' ? 'left' : 'right'}: 4px;"></i>${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="job-actions">
+                        <button class="btn btn-primary btn-sm" onclick="applyToJob(${job.id})" ${isApplied ? 'disabled' : ''}>
+                            <i class="fas fa-paper-plane"></i>
+                            ${isApplied ? appliedText : applyText}
+                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="saveJob(${job.id})">
+                            <i class="fas fa-heart" style="color: ${isSaved ? 'var(--jobni-gold)' : ''}"></i>
+                            ${saveText}
+                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="showJobDetails(${job.id})">
+                            <i class="fas fa-info-circle"></i>
+                            ${detailsText}
+                        </button>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Language switcher function
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            const html = document.documentElement;
+            const langToggle = document.getElementById('langToggle');
+            
+            if (currentLanguage === 'en') {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langToggle.textContent = 'عر';
+                document.body.style.fontFamily = "'Inter', sans-serif";
+            } else {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langToggle.textContent = 'EN';
+                document.body.style.fontFamily = "'Cairo', sans-serif";
+            }
+            
+            // Update all elements with data-ar and data-en attributes
+            document.querySelectorAll('[data-ar][data-en]').forEach(element => {
+                const text = currentLanguage === 'ar' ? element.getAttribute('data-ar') : element.getAttribute('data-en');
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = text;
+                } else if (element.tagName === 'OPTION') {
+                    element.textContent = text;
+                } else if (element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'H4' || element.tagName === 'H5' || element.tagName === 'H6') {
+                    // Headers - replace text directly
+                    element.textContent = text;
+                } else if (element.tagName === 'P' || element.tagName === 'DIV' || element.tagName === 'SPAN') {
+                    // Paragraph or div - check if has only text or text with simple structure
+                    if (element.querySelector('i')) {
+                        // Has icon - preserve it
+                        const iconHTML = element.querySelector('i').outerHTML;
+                        if (currentLanguage === 'ar') {
+                            element.innerHTML = text;
+                        } else {
+                            element.innerHTML = text;
+                        }
+                    } else {
+                        element.textContent = text;
+                    }
+                } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                    // Links and buttons
+                    const icons = Array.from(element.querySelectorAll('i')).map(i => i.outerHTML);
+                    if (icons.length > 0) {
+                        // Has icon - preserve it
+                        if (currentLanguage === 'ar') {
+                            element.innerHTML = icons.join('') + ' <span>' + text + '</span>';
+                        } else {
+                            element.innerHTML = '<span>' + text + '</span> ' + icons.join('');
+                        }
+                    } else {
+                        element.textContent = text;
+                    }
+                } else {
+                    // Default behavior
+                    element.textContent = text;
+                }
+            });
+            
+            // Update job cards if they exist
+            renderJobs();
+        }
+        
+        // Menu toggle for mobile
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+        
+        function closeMenu() {
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderJobs();
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

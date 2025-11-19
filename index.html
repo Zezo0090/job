@@ -1743,123 +1743,68 @@
             }, 4000);
         }
         
-        // Initialize Opportunities - COMPLETE WITH DEMO DATA
+        // Initialize Opportunities - ZERO DATA LOSS
+        // Data persists in memory throughout session
         DATABASE.opportunities = [
             {
-                id: 'job_demo_001',
-                title_ar: 'مسؤول مبيعات - دوام جزئي',
+                id: 'opp_1',
+                title_ar: 'مسؤول مبيعات جزئي',
                 title_en: 'Part-Time Sales Manager',
-                company_ar: 'شركة المستقبل للتقنية',
-                company_en: 'Future Tech Company',
-                city: 'الرياض',
+                company_ar: 'شركة تجريبية',
+                company_en: 'Demo Company',
+                city: 'الدمام',
                 category: 'retail',
-                shiftDate: '2025-11-25',
-                shiftTimeFrom: '09:00',
-                shiftTimeTo: '17:00',
-                payAmount: 3500,
-                payUnit: 'monthly',
-                description_ar: 'نبحث عن مسؤول مبيعات طموح للانضمام لفريقنا. خبرة سابقة ضرورية.',
-                description_en: 'Looking for ambitious sales manager. Previous experience required.',
-                isPublished: true,
-                status: 'active',
-                createdAt: '2025-11-10T12:00:00Z',
-                createdBy: 'emp_demo'
-            },
-            {
-                id: 'job_demo_002',
-                title_ar: 'مطور واجهات أمامية - عن بعد',
-                title_en: 'Frontend Developer - Remote',
-                company_ar: 'شركة المستقبل للتقنية',
-                company_en: 'Future Tech Company',
-                city: 'الرياض',
-                category: 'tech',
-                shiftDate: '2025-11-26',
-                shiftTimeFrom: '10:00',
-                shiftTimeTo: '18:00',
-                payAmount: 6000,
-                payUnit: 'monthly',
-                description_ar: 'مطلوب مطور واجهات أمامية محترف. معرفة بـ React.js ضرورية.',
-                description_en: 'Professional frontend developer needed. React.js knowledge required.',
-                isPublished: true,
-                status: 'active',
-                createdAt: '2025-11-12T14:00:00Z',
-                createdBy: 'emp_demo'
-            },
-            {
-                id: 'job_demo_003',
-                title_ar: 'مصمم جرافيك - مشاريع حرة',
-                title_en: 'Graphic Designer - Freelance',
-                company_ar: 'شركة المستقبل للتقنية',
-                company_en: 'Future Tech Company',
-                city: 'جدة',
-                category: 'marketing',
-                shiftDate: '2025-11-27',
+                shiftDate: '2025-11-10',
                 shiftTimeFrom: '09:00',
                 shiftTimeTo: '13:00',
-                payAmount: 250,
-                payUnit: 'daily',
-                description_ar: 'نحتاج مصمم جرافيك مبدع. إتقان برامج Adobe ضروري.',
-                description_en: 'Creative graphic designer needed. Adobe suite mastery required.',
+                payAmount: 35,
+                payUnit: 'hourly',
+                description_ar: 'نبحث عن مسؤول مبيعات ذو خبرة للعمل في معرضنا. 4 ساعات يومياً.',
+                description_en: 'Looking for experienced sales manager. 4 hours daily.',
                 isPublished: true,
                 status: 'active',
-                createdAt: '2025-11-14T10:00:00Z',
-                createdBy: 'emp_demo'
-            }
-        ];
-        
-        // Initialize Applications - 4 DEMO APPLICATIONS
-        DATABASE.applications = [
-            {
-                id: 'app_demo_001',
-                seekerId: 'seeker_demo',
-                seekerName: 'أحمد محمد (موظف)',
-                seekerEmail: 'employee@jobni.com',
-                opportunityId: 'job_demo_001',
-                opportunityTitle: 'مسؤول مبيعات - دوام جزئي',
-                companyId: 'emp_demo',
-                message: 'مرحباً، أنا متحمس للانضمام لفريقكم. لدي خبرة 3 سنوات في المبيعات.',
-                status: 'pending',
-                appliedAt: '2025-11-16T10:00:00Z',
-                updatedAt: '2025-11-16T10:00:00Z'
+                createdAt: '2025-11-01',
+                createdBy: 'admin_1'
             },
             {
-                id: 'app_demo_002',
-                seekerId: 'seeker_demo',
-                seekerName: 'أحمد محمد (موظف)',
-                seekerEmail: 'employee@jobni.com',
-                opportunityId: 'job_demo_002',
-                opportunityTitle: 'مطور واجهات أمامية - عن بعد',
-                companyId: 'emp_demo',
-                message: 'لدي خبرة قوية في React و TypeScript.',
-                status: 'pending',
-                appliedAt: '2025-11-17T14:30:00Z',
-                updatedAt: '2025-11-17T14:30:00Z'
+                id: 'opp_2',
+                title_ar: 'مشرف مخزون موسمي',
+                title_en: 'Seasonal Warehouse Supervisor',
+                company_ar: 'شركة لوجستية',
+                company_en: 'Logistics Company',
+                city: 'الخبر',
+                category: 'logistics',
+                shiftDate: '2025-11-15',
+                shiftTimeFrom: '16:00',
+                shiftTimeTo: '24:00',
+                payAmount: 300,
+                payUnit: 'daily',
+                description_ar: 'وردية مسائية في المخزن. الدفع يومي.',
+                description_en: 'Evening shift at warehouse. Daily payment.',
+                isPublished: true,
+                status: 'active',
+                createdAt: '2025-11-01',
+                createdBy: 'admin_1'
             },
             {
-                id: 'app_demo_003',
-                seekerId: 'seeker_demo',
-                seekerName: 'أحمد محمد (موظف)',
-                seekerEmail: 'employee@jobni.com',
-                opportunityId: 'job_demo_001',
-                opportunityTitle: 'مسؤول مبيعات - دوام جزئي',
-                companyId: 'emp_demo',
-                message: 'متوفر فوراً. لدي سجل حافل.',
-                status: 'accepted',
-                appliedAt: '2025-11-18T09:00:00Z',
-                updatedAt: '2025-11-18T16:00:00Z'
-            },
-            {
-                id: 'app_demo_004',
-                seekerId: 'seeker_demo',
-                seekerName: 'أحمد محمد (موظف)',
-                seekerEmail: 'employee@jobni.com',
-                opportunityId: 'job_demo_003',
-                opportunityTitle: 'مصمم جرافيك - مشاريع حرة',
-                companyId: 'emp_demo',
-                message: 'لدي معرض أعمال قوي في التصميم.',
-                status: 'pending',
-                appliedAt: '2025-11-19T11:00:00Z',
-                updatedAt: '2025-11-19T11:00:00Z'
+                id: 'opp_3',
+                title_ar: 'موظف فعاليات',
+                title_en: 'Event Staff',
+                company_ar: 'هيئة الترفيه',
+                company_en: 'Entertainment Authority',
+                city: 'الظهران',
+                category: 'events',
+                shiftDate: '2025-11-08',
+                shiftTimeFrom: '10:00',
+                shiftTimeTo: '18:00',
+                payAmount: 25,
+                payUnit: 'hourly',
+                description_ar: 'موظف فعاليات نهاية الأسبوع. 8 ساعات.',
+                description_en: 'Weekend event staff. 8 hours.',
+                isPublished: true,
+                status: 'active',
+                createdAt: '2025-11-02',
+                createdBy: 'admin_1'
             }
         ];
         
@@ -3507,85 +3452,63 @@
                 myJobs.some(job => job.id === app.opportunityId)
             );
             
-            console.log('📊 EMPLOYER DASHBOARD DATA:');
-            console.log('   My Jobs:', myJobs.length);
-            console.log('   Applications:', applications.length);
-            console.log('   Applications List:', applications);
-            
             return `
                 <div class="dashboard-header">
                     <div>
                         <h1>مرحباً ${currentUser.companyName || currentUser.name}! 👋</h1>
-                        <p style="margin: 0; color: var(--jobni-text-light);">لوحة تحكم الشركة - ${applications.length} طلب</p>
+                        <p style="margin: 0; color: var(--jobni-text-light);">لوحة تحكم المشرف</p>
                     </div>
                     <button class="btn btn-primary" onclick="loadEmployerSection('add-job')"><i class="fas fa-plus"></i> إضافة وظيفة</button>
                 </div>
-                <div style="background: linear-gradient(135deg, var(--jobni-green-light), var(--jobni-blue-light)); color: white; padding: var(--space-lg); border-radius: var(--border-radius); margin-bottom: var(--space-xl); text-align: center;">
-                    <h2 style="margin: 0 0 var(--space-sm) 0; font-size: 24px;">✅ البيانات محفوظة في الذاكرة!</h2>
-                    <p style="margin: 0; opacity: 0.95;">جميع الطلبات والبيانات محفوظة ولن تختفي</p>
-                </div>
                 <div class="stats-grid">
-                    <div class="stat-card" style="background: var(--color-bg-1);">
-                        <div class="stat-value" style="color: var(--jobni-blue-dark);">${myJobs.length}</div>
-                        <div class="stat-label">إجمالي الوظائف</div>
+                    <div class="stat-card">
+                        <div class="stat-value">${myJobs.length}</div>
+                        <div class="stat-label">وظائفي</div>
                     </div>
-                    <div class="stat-card" style="background: var(--color-bg-2);">
-                        <div class="stat-value" style="color: var(--jobni-gold);">${applications.length}</div>
-                        <div class="stat-label">إجمالي الطلبات</div>
+                    <div class="stat-card">
+                        <div class="stat-value">${applications.length}</div>
+                        <div class="stat-label">طلبات الموظفين</div>
                     </div>
-                    <div class="stat-card" style="background: var(--color-bg-3);">
-                        <div class="stat-value" style="color: var(--jobni-green-dark);">${applications.filter(a => a.status === 'pending').length}</div>
-                        <div class="stat-label">طلبات معلقة</div>
+                    <div class="stat-card">
+                        <div class="stat-value">${applications.filter(a => a.status === 'pending').length}</div>
+                        <div class="stat-label">معلقة</div>
                     </div>
-                    <div class="stat-card" style="background: var(--color-bg-4);">
-                        <div class="stat-value" style="color: #2E7D32;">${applications.filter(a => a.status === 'accepted').length}</div>
-                        <div class="stat-label">طلبات مقبولة</div>
+                    <div class="stat-card">
+                        <div class="stat-value">${applications.filter(a => a.status === 'accepted').length}</div>
+                        <div class="stat-label">مقبولة</div>
                     </div>
                 </div>
                 <div class="data-table">
-                    <div class="table-header">
-                        <h2 style="margin: 0;">📬 طلبات الموظفين (${applications.length})</h2>
-                    </div>
+                    <div class="table-header"><h2 style="margin: 0;">آخر الطلبات</h2></div>
                     ${applications.length > 0 ? `
                         <table>
                             <thead>
                                 <tr>
                                     <th>الموظف</th>
                                     <th>الوظيفة</th>
-                                    <th>الرسالة</th>
                                     <th>التاريخ</th>
                                     <th>الحالة</th>
                                     <th>إجراءات</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${applications.map(app => `
-                                    <tr style="${app.status === 'pending' ? 'background: rgba(255, 179, 0, 0.05);' : ''}">
-                                        <td>
-                                            <strong>${app.seekerName || 'N/A'}</strong><br>
-                                            <small style="color: var(--jobni-text-light);">📧 ${app.seekerEmail || ''}</small>
-                                        </td>
-                                        <td><strong>${app.opportunityTitle || 'N/A'}</strong></td>
-                                        <td style="max-width: 200px;"><small>${app.message || 'لا توجد رسالة'}</small></td>
+                                ${applications.slice(-5).reverse().map(app => `
+                                    <tr>
+                                        <td>${app.seekerName || 'N/A'}<br><small style="color: var(--jobni-text-light);">${app.seekerEmail || ''}</small></td>
+                                        <td>${app.opportunityTitle || 'N/A'}</td>
                                         <td>${new Date(app.appliedAt).toLocaleDateString('ar-SA')}</td>
-                                        <td><span class="status-badge status-${app.status === 'pending' ? 'pending' : app.status === 'accepted' ? 'active' : 'closed'}">${app.status === 'pending' ? '⏳ معلق' : app.status === 'accepted' ? '✅ مقبول' : '❌ مرفوض'}</span></td>
+                                        <td><span class="status-badge status-${app.status === 'pending' ? 'pending' : app.status === 'accepted' ? 'active' : 'closed'}">${app.status === 'pending' ? 'معلق' : app.status === 'accepted' ? 'مقبول' : 'مرفوض'}</span></td>
                                         <td>
                                             ${app.status === 'pending' ? `
-                                                <button class="action-btn btn-view" onclick="acceptApplication('${app.id}')" title="قبول الطلب"><i class="fas fa-check"></i></button>
-                                                <button class="action-btn btn-delete" onclick="rejectApplication('${app.id}')" title="رفض الطلب"><i class="fas fa-times"></i></button>
-                                            ` : '<span style="color: var(--jobni-text-light); font-size: 12px;">✓ تمت المعالجة</span>'}
+                                                <button class="action-btn btn-view" onclick="acceptApplication('${app.id}')"><i class="fas fa-check"></i></button>
+                                                <button class="action-btn btn-delete" onclick="rejectApplication('${app.id}')"><i class="fas fa-times"></i></button>
+                                            ` : '<span style="color: var(--jobni-text-light); font-size: 12px;">تم المعالجة</span>'}
                                         </td>
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
-                    ` : `
-                        <div style="padding: var(--space-2xl); text-align: center;">
-                            <i class="fas fa-inbox" style="font-size: 64px; color: #ddd; margin-bottom: var(--space-md);"></i>
-                            <h3 style="color: var(--jobni-text-light);">لا توجد طلبات حالياً</h3>
-                            <p style="color: var(--jobni-text-light); margin-top: var(--space-sm);">عندما يقدم الموظفون على وظائفك ستظهر هنا</p>
-                        </div>
-                    `}
+                    ` : '<div style="padding: var(--space-xl); text-align: center; color: var(--jobni-text-light);">لا توجد طلبات حالياً</div>'}
                 </div>
             `;
         }
@@ -4164,82 +4087,26 @@
         }
         
         function acceptApplication(appId) {
-            if (!confirm('هل أنت متأكد من قبول هذا الطلب؟')) return;
-            
             const app = DATABASE.applications.find(a => a.id === appId);
-            if (!app) {
-                alert('❌ الطلب غير موجود');
-                return;
-            }
-            
-            app.status = 'accepted';
-            app.updatedAt = new Date().toISOString();
-            
-            logAudit('employer', currentUser.id, 'UPDATE', 'application', appId, { status: 'accepted' });
-            
-            console.log('\n✅ APPLICATION ACCEPTED:');
-            console.log('   ID:', appId);
-            console.log('   Employee:', app.seekerName);
-            console.log('   Job:', app.opportunityTitle);
-            console.log('   🔒 Updated in memory!\n');
-            
-            sendEmail(
-                app.seekerEmail,
-                '✅ قبول طلبك - Jobni',
-                `مبروك ${app.seekerName}!\n\nتم قبول طلبك للوظيفة "${app.opportunityTitle}"\nسيتم التواصل معك قريباً.`,
-                'acceptance'
-            );
-            
-            showSuccessMessage('✅ تم قبول الطلب بنجاح!\n\n📧 تم إرسال إشعار للموظف\n🔒 التحديث محفوظ في الذاكرة');
-            
-            updateEmployerBadges();
-            
-            // Refresh current view
-            if (currentView === 'employer') {
-                const mainContent = document.getElementById('employerMainContent');
-                if (mainContent) {
-                    mainContent.innerHTML = getEmployerDashboardContent();
-                }
+            if (app) {
+                app.status = 'accepted';
+                logAudit('employer', currentUser.id, 'UPDATE', 'application', appId, { status: 'accepted' });
+                console.log('✅ APPLICATION ACCEPTED:', appId);
+                sendEmail(app.seekerEmail, 'قبول طلبك - Jobni', `تم قبول طلبك للوظيفة "${app.opportunityTitle}"`, 'acceptance');
+                showSuccessMessage('✅ تم قبول الطلب!');
+                loadEmployerSection('applications');
             }
         }
         
         function rejectApplication(appId) {
-            if (!confirm('هل أنت متأكد من رفض هذا الطلب؟')) return;
-            
             const app = DATABASE.applications.find(a => a.id === appId);
-            if (!app) {
-                alert('❌ الطلب غير موجود');
-                return;
-            }
-            
-            app.status = 'rejected';
-            app.updatedAt = new Date().toISOString();
-            
-            logAudit('employer', currentUser.id, 'UPDATE', 'application', appId, { status: 'rejected' });
-            
-            console.log('\n❌ APPLICATION REJECTED:');
-            console.log('   ID:', appId);
-            console.log('   Employee:', app.seekerName);
-            console.log('   Job:', app.opportunityTitle);
-            console.log('   🔒 Updated in memory!\n');
-            
-            sendEmail(
-                app.seekerEmail,
-                'تحديث على طلبك - Jobni',
-                `${app.seekerName},\n\nنأسف لإبلاغك بأنه لم يتم قبول طلبك للوظيفة "${app.opportunityTitle}" في هذا الوقت.\nنشجعك على التقديم على فرص أخرى.`,
-                'rejection'
-            );
-            
-            showSuccessMessage('تم رفض الطلب\n\n📧 تم إرسال إشعار للموظف\n🔒 التحديث محفوظ في الذاكرة');
-            
-            updateEmployerBadges();
-            
-            // Refresh current view
-            if (currentView === 'employer') {
-                const mainContent = document.getElementById('employerMainContent');
-                if (mainContent) {
-                    mainContent.innerHTML = getEmployerDashboardContent();
-                }
+            if (app) {
+                app.status = 'rejected';
+                logAudit('employer', currentUser.id, 'UPDATE', 'application', appId, { status: 'rejected' });
+                console.log('❌ APPLICATION REJECTED:', appId);
+                sendEmail(app.seekerEmail, 'تحديث على طلبك - Jobni', `نأسف لعدم قبول طلبك للوظيفة "${app.opportunityTitle}"`, 'rejection');
+                showSuccessMessage('تم رفض الطلب');
+                loadEmployerSection('applications');
             }
         }
         

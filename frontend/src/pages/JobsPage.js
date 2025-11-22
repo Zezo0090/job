@@ -149,10 +149,10 @@ const JobsPage = () => {
             </div>
             
             <Select value={filters.category} onValueChange={(value) => setFilters({...filters, category: value})}>
-              <SelectTrigger data-testid="category-filter">
+              <SelectTrigger data-testid="category-filter" style={{ position: 'relative', zIndex: 1 }}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent style={{ position: 'relative', zIndex: 9999 }}>
                 {categories.map(cat => (
                   <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
                 ))}

@@ -50,7 +50,8 @@ const AuthPageNew = () => {
         const response = await axios.post(`${API}/auth/register`, formData);
         login(response.data.access_token, response.data.user);
         navigate('/jobs');
-      }\n    } catch (error) {
+      }
+    } catch (error) {
       toast.error(error.response?.data?.detail || 'حدث خطأ ما');
     } finally {
       setLoading(false);

@@ -13,6 +13,7 @@ import JobsPage from './pages/JobsPage';
 import JobDetailsPage from './pages/JobDetailsPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
+import ContactPage from './pages/ContactPage';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;

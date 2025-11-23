@@ -128,22 +128,7 @@ const AuthPage = () => {
                     {/* Role is automatically set to job_seeker - no selection needed */}
                     <input type="hidden" name="role" value="job_seeker" />
 
-                    {formData.role === 'employer' && (
-                      <div className="form-group">
-                        <Label htmlFor="company_name" data-testid="company-label">اسم الشركة</Label>
-                        <div className="input-with-icon">
-                          <Briefcase className="input-icon" size={20} />
-                          <Input
-                            id="company_name"
-                            name="company_name"
-                            placeholder="أدخل اسم الشركة"
-                            value={formData.company_name}
-                            onChange={handleChange}
-                            data-testid="company-input"
-                          />
-                        </div>
-                      </div>
-                    )}
+                    {/* Company field removed - only job seekers can register */}
 
                     <div className="form-group">
                       <Label htmlFor="phone" data-testid="phone-label">رقم الجوال</Label>

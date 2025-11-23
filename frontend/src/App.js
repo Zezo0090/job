@@ -78,7 +78,13 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/auth" element={user ? <Navigate to="/jobs" /> : <AuthPage />} />
+            <Route path="/auth" element={
+              user ? (
+                user.role === 'admin' || user.role === 'employer' ? 
+                  <Navigate to="/dashboard" /> : 
+                  <Navigate to="/jobs" />
+              ) : <AuthPage />
+            } />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
             <Route 

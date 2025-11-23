@@ -79,6 +79,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/auth" element={
               user ? (
                 user.role === 'admin' || user.role === 'employer' ? 

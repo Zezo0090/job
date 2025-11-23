@@ -41,11 +41,21 @@ const AuthPage = () => {
           password: formData.password
         });
         login(response.data.access_token, response.data.user);
-        navigate('/jobs');
+        // Navigate based on role
+        if (response.data.user.role === 'admin' || response.data.user.role === 'employer') {
+          navigate('/dashboard');
+        } else {
+          navigate('/jobs');
+        }
       } else {
         const response = await axios.post(`${API}/auth/register`, formData);
         login(response.data.access_token, response.data.user);
-        navigate('/jobs');
+        // Navigate based on role
+        if (response.data.user.role === 'employer') {
+          navigate('/dashboard');
+        } else {
+          navigate('/jobs');
+        }
       }
     } catch (error) {
       toast.error(error.response?.data?.detail || 'حدث خطأ ما');

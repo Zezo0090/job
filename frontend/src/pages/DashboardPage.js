@@ -222,6 +222,17 @@ const DashboardPage = () => {
                           </Button>
                         </>
                       )}
+                      {(user.role === 'employer' || user.role === 'admin') && app.status === 'accepted' && (
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          onClick={() => handleUpdateApplication(app.id, 'completed')}
+                          data-testid={`complete-${app.id}`}
+                          className="btn-complete"
+                        >
+                          <Check size={16} className="ml-1" /> تحديد كمكتمل
+                        </Button>
+                      )}
                       {(app.status === 'accepted' || app.status === 'completed') && (
                         <Button size="sm" variant="outline" onClick={() => downloadInvoice(app.id)} data-testid={`invoice-${app.id}`}>
                           <Download size={16} className="ml-1" /> تحميل فاتورة

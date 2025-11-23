@@ -253,11 +253,19 @@
 .landing-footer {
   background: #1a202c;
   color: white;
-  padding: 3rem 0;
+  padding: 4rem 0 2rem;
 }
 
-.footer-content {
-  text-align: center;
+.footer-content-new {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: 3rem;
 }
 
 .footer-brand h3 {
@@ -268,36 +276,86 @@
 }
 
 .footer-brand p {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   opacity: 0.8;
 }
 
-.footer-links {
-  margin-bottom: 2rem;
+.footer-email {
+  color: #0ea5e9 !important;
+  font-weight: 600;
 }
 
-.footer-links h4 {
+.footer-links-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-links-section h4 {
   font-size: 1.2rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.footer-links a {
+.footer-links-section a,
+.footer-link-btn {
   display: block;
   color: white;
   text-decoration: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   opacity: 0.8;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: right;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.footer-links a:hover {
+.footer-links-section a:hover,
+.footer-link-btn:hover {
   opacity: 1;
+  color: #0ea5e9;
+  transform: translateX(-5px);
 }
 
-.footer-copy {
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.footer-social-link:hover {
+  background: rgba(14, 165, 233, 0.2);
+  transform: translateX(-5px);
+}
+
+.footer-bottom {
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
   opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-links-section {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Responsive */

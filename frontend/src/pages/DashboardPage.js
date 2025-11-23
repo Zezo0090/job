@@ -189,26 +189,42 @@ const DashboardPage = () => {
             ) : (
               <div className="applications-list">
                 {applications.map(app => (
-                  <div key={app.id} className="application-item" data-testid={`application-${app.id}`}>
-                    <div>
-                      <p className="app-job">Application ID: {app.id.slice(0, 8)}</p>
-                      <p className="app-date">{new Date(app.applied_date).toLocaleDateString('ar-SA')}</p>
+                  <div key={app.id} className="application-item-enhanced" data-testid={`application-${app.id}`}>
+                    <div className="app-main-info">
+                      <div className="app-details">
+                        <h3 className="app-job-title">{app.jobTitle || 'وظيفة'}</h3>
+                        <p className="app-applicant">المتقدم: {app.applicantName || 'غير معروف'}</p>
+                        <p className="app-id">رقم الطلب: {app.id.slice(0, 8)}</p>
+                        <p className="app-date">التاريخ: {new Date(app.applied_date).toLocaleDateString('ar-SA')}</p>
+                        {app.message && <p className="app-message">الرسالة: {app.message}</p>}
+                      </div>
+                      <div className="app-status-badge">
+                        <Badge variant={
+                          app.status === 'accepted' ? 'success' : 
+                          app.status === 'rejected' ? 'destructive' : 
+                          'default'
+                        }>
+                          {app.status === 'pending' ? 'معلق' : 
+                           app.status === 'accepted' ? 'مقبول' : 
+                           app.status === 'rejected' ? 'مرفوض' : 
+                           app.status}
+                        </Badge>
+                      </div>
                     </div>
                     <div className="app-actions">
-                      <Badge>{app.status}</Badge>
-                      {user.role === 'employer' && app.status === 'pending' && (
+                      {(user.role === 'employer' || user.role === 'admin') && app.status === 'pending' && (
                         <>
-                          <Button size="sm" onClick={() => handleUpdateApplication(app.id, 'accepted')} data-testid={`accept-${app.id}`}>
+                          <Button size="sm" onClick={() => handleUpdateApplication(app.id, 'accepted')} data-testid={`accept-${app.id}`} className="btn-accept">
                             <Check size={16} className="ml-1" /> قبول
                           </Button>
-                          <Button size="sm" variant="destructive" onClick={() => handleUpdateApplication(app.id, 'rejected')} data-testid={`reject-${app.id}`}>
+                          <Button size="sm" variant="destructive" onClick={() => handleUpdateApplication(app.id, 'rejected')} data-testid={`reject-${app.id}`} className="btn-reject">
                             <X size={16} className="ml-1" /> رفض
                           </Button>
                         </>
                       )}
                       {(app.status === 'accepted' || app.status === 'completed') && (
                         <Button size="sm" variant="outline" onClick={() => downloadInvoice(app.id)} data-testid={`invoice-${app.id}`}>
-                          <Download size={16} className="ml-1" /> فاتورة
+                          <Download size={16} className="ml-1" /> تحميل فاتورة
                         </Button>
                       )}
                     </div>

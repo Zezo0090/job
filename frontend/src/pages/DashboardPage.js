@@ -48,7 +48,7 @@ const DashboardPage = () => {
         const adminStatsResponse = await axios.get(`${API}/admin/stats`);
         setStats(adminStatsResponse.data);
         
-        const jobsResponse = await axios.get(`${API}/jobs?status=active`);
+        const jobsResponse = await axios.get(`${API}/jobs`);
         setJobs(jobsResponse.data);
         
         const usersResponse = await axios.get(`${API}/admin/users`);
@@ -60,6 +60,26 @@ const DashboardPage = () => {
 
       const appsResponse = await axios.get(`${API}/applications`);
       setApplications(appsResponse.data);
+      
+      // Fetch applicant and job details for each application
+      const enrichedApps = await Promise.all(
+        appsResponse.data.map(async (app) => {
+          try {
+            const [jobRes, applicantRes] = await Promise.all([
+              axios.get(`${API}/jobs/${app.job_id}`),
+              axios.get(`${API}/admin/users`).then(res => res.data.find(u => u.id === app.applicant_id))
+            ]);
+            return {
+              ...app,
+              jobTitle: jobRes.data.title,
+              applicantName: applicantRes?.name || 'غير معروف'
+            };
+          } catch (err) {
+            return app;
+          }
+        })
+      );
+      setApplications(enrichedApps);
     } catch (error) {
       toast.error('فشل تحميل البيانات');
     } finally {

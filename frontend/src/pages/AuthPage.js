@@ -125,21 +125,8 @@ const AuthPage = () => {
                       </div>
                     </div>
 
-                    <div className="form-group">
-                      <Label htmlFor="role" data-testid="role-label">نوع الحساب</Label>
-                      <Select 
-                        value={formData.role} 
-                        onValueChange={(value) => setFormData({...formData, role: value})}
-                      >
-                        <SelectTrigger data-testid="role-select">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="job_seeker" data-testid="role-job-seeker">باحث عن عمل</SelectItem>
-                          <SelectItem value="employer" data-testid="role-employer">صاحب عمل</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    {/* Role is automatically set to job_seeker - no selection needed */}
+                    <input type="hidden" name="role" value="job_seeker" />
 
                     {formData.role === 'employer' && (
                       <div className="form-group">

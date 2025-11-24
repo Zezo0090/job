@@ -11,7 +11,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { toast } from 'sonner';
 import axios from 'axios';
-import { Briefcase, Clock, Users, TrendingUp, Plus, Check, X, Download, Home, LogOut } from 'lucide-react';
+import { Briefcase, Clock, Users, TrendingUp, Plus, Check, X, Download, Home, LogOut, Edit, Trash2 } from 'lucide-react';
 import './DashboardPage.css';
 
 const DashboardPage = () => {

@@ -413,6 +413,31 @@ async def update_application_status(
     )
     await db.notifications.insert_one(notification.model_dump())
     
+    # Create conversation when accepted
+    if status_data.status == "accepted":
+        # Check if conversation already exists
+        existing_conversation = await db.conversations.find_one({
+            "job_id": application["job_id"],
+            "candidate_id": application["applicant_id"]
+        })
+        
+        if not existing_conversation:
+            conversation = Conversation(
+                job_id=application["job_id"],
+                candidate_id=application["applicant_id"],
+                employer_id=application["employer_id"]
+            )
+            await db.conversations.insert_one(conversation.model_dump())
+            
+            # Send welcome message
+            welcome_message = Message(
+                conversation_id=conversation.id,
+                sender_id="system",
+                sender_name="Jobni",
+                message_text=f"مرحباً 👋\nتم قبولك مبدئياً في وظيفة: {job['title']}\n\nالرجاء تأكيد حضورك وذكر أي استفسارات عن الموقع، الوقت، أو متطلبات العمل."
+            )
+            await db.messages.insert_one(welcome_message.model_dump())
+    
     updated_app = await db.applications.find_one({"id": app_id}, {"_id": 0})
     return Application(**updated_app)
 

@@ -23,6 +23,7 @@ const DashboardPage = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [showCreateJob, setShowCreateJob] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [editingJobId, setEditingJobId] = useState(null);
   const [jobForm, setJobForm] = useState({
     title: '',
     description: '',

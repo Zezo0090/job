@@ -441,8 +441,13 @@ const DashboardPage = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowCreateJob(false)} data-testid="cancel-create-job">إلغاء</Button>
-            <Button onClick={handleCreateJob} data-testid="submit-create-job">نشر الوظيفة</Button>
+            <Button variant="outline" onClick={() => {
+              setShowCreateJob(false);
+              setEditingJobId(null);
+            }} data-testid="cancel-create-job">إلغاء</Button>
+            <Button onClick={handleCreateJob} data-testid="submit-create-job">
+              {editingJobId ? 'تحديث الوظيفة' : 'نشر الوظيفة'}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

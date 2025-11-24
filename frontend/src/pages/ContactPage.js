@@ -11,55 +11,6 @@ import './ContactPage.css';
 
 const ContactPage = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-  const [sending, setSending] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSending(true);
-
-    try {
-      // Send email using EmailJS
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'job.ni@outlook.com'
-      };
-
-      // For now, we'll simulate email sending
-      // You'll need to setup EmailJS account and add credentials
-      console.log('Email would be sent:', templateParams);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast.success('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      toast.error('فشل الإرسال، يرجى المحاولة مرة أخرى');
-    } finally {
-      setSending(false);
-    }
-  };
 
   return (
     <div className="contact-page" data-testid="contact-page">

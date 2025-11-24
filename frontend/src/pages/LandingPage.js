@@ -70,10 +70,10 @@ const LandingPage = () => {
         <div className="container">
           <div className="hero-content">
             <h1 className="hero-title" data-testid="hero-title">
-              اختر وقتك.. واشتغل
+              {t('hero.title')}
             </h1>
             <p className="hero-subtitle" data-testid="hero-subtitle">
-              وظائف جزئية ومرنة من ساعة إلى شهر
+              {t('hero.subtitle')}
             </p>
             
             <div className="duration-icons">

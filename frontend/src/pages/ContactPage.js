@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { toast } from 'sonner';
-import emailjs from 'emailjs-com';
-import { Mail, Phone, MapPin, Send, ArrowLeft, MessageCircle } from 'lucide-react';
+import { Card, CardContent } from '../components/ui/card';
+import { Mail, Send, ArrowLeft, MessageCircle, MapPin } from 'lucide-react';
 import './ContactPage.css';
 
 const ContactPage = () => {

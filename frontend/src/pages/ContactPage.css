@@ -48,6 +48,26 @@
   line-height: 1.6;
 }
 
+.employer-notice {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 12px;
+  border-right: 4px solid #0ea5e9;
+}
+
+.employer-notice h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0369a1;
+  margin-bottom: 0.5rem;
+}
+
+.employer-notice p {
+  color: #0c4a6e;
+  font-size: 1rem;
+}
+
 .contact-info-cards {
   display: flex;
   flex-direction: column;

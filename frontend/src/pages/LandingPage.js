@@ -45,6 +45,7 @@ const LandingPage = () => {
             <button onClick={() => navigate('/contact')} className="nav-link-btn" data-testid="nav-contact">تواصل معنا</button>
           </nav>
           <div className="header-actions">
+            <LanguageSwitcher />
             <Button 
               variant="outline" 
               onClick={() => navigate('/auth')} 

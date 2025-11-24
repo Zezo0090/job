@@ -502,6 +502,57 @@ async def get_saved_jobs(current_user: User = Depends(get_current_user)):
     saved = await db.saved_jobs.find({"user_id": current_user.id}, {"_id": 0}).to_list(1000)
     return [s["job_id"] for s in saved]
 
+# ==================== CHAT SYSTEM ====================
+
+@api_router.get("/conversations", response_model=List[Conversation])
+async def get_conversations(current_user: User = Depends(get_current_user)):
+    if current_user.role == "admin":
+        conversations = await db.conversations.find({}, {"_id": 0}).to_list(1000)
+    elif current_user.role == "employer":
+        conversations = await db.conversations.find({"employer_id": current_user.id}, {"_id": 0}).to_list(1000)
+    else:
+        conversations = await db.conversations.find({"candidate_id": current_user.id}, {"_id": 0}).to_list(1000)
+    return conversations
+
+@api_router.get("/conversations/{conversation_id}/messages", response_model=List[Message])
+async def get_messages(conversation_id: str, current_user: User = Depends(get_current_user)):
+    # Check access
+    conversation = await db.conversations.find_one({"id": conversation_id}, {"_id": 0})
+    if not conversation:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    
+    if current_user.role != "admin" and current_user.id not in [conversation["candidate_id"], conversation["employer_id"]]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    messages = await db.messages.find(
+        {"conversation_id": conversation_id},
+        {"_id": 0}
+    ).sort("created_at", 1).to_list(1000)
+    return messages
+
+@api_router.post("/conversations/{conversation_id}/messages", response_model=Message)
+async def send_message(
+    conversation_id: str,
+    message_data: MessageCreate,
+    current_user: User = Depends(get_current_user)
+):
+    # Check access
+    conversation = await db.conversations.find_one({"id": conversation_id}, {"_id": 0})
+    if not conversation:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    
+    if current_user.role != "admin" and current_user.id not in [conversation["candidate_id"], conversation["employer_id"]]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    message = Message(
+        **message_data.model_dump(),
+        sender_id=current_user.id,
+        sender_name=current_user.name
+    )
+    await db.messages.insert_one(message.model_dump())
+    
+    return message
+
 # ==================== NOTIFICATIONS ====================
 
 @api_router.get("/notifications", response_model=List[Notification])

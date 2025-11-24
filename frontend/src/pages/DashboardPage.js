@@ -91,16 +91,50 @@ const DashboardPage = () => {
   const handleCreateJob = async () => {
     try {
       const requirements = jobForm.requirements.split('\n').filter(r => r.trim());
-      await axios.post(`${API}/jobs`, {
+      const jobData = {
         ...jobForm,
         salary: parseFloat(jobForm.salary),
         requirements
-      });
-      toast.success('تم نشر الوظيفة!');
+      };
+
+      if (editingJobId) {
+        // Update existing job
+        await axios.put(`${API}/jobs/${editingJobId}`, jobData);
+        toast.success('تم تحديث الوظيفة!');
+      } else {
+        // Create new job
+        await axios.post(`${API}/jobs`, jobData);
+        toast.success('تم نشر الوظيفة!');
+      }
+      
       setShowCreateJob(false);
+      setEditingJobId(null);
+      setJobForm({
+        title: '',
+        description: '',
+        company_name: user?.company_name || '',
+        location: '',
+        duration_type: 'hour',
+        duration_value: '',
+        salary: '',
+        category: 'التجزئة',
+        requirements: ''
+      });
       fetchData();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'فشل نشر الوظيفة');
+      toast.error(error.response?.data?.detail || 'فشل العملية');
+    }
+  };
+
+  const handleDeleteJob = async (jobId) => {
+    if (!window.confirm('هل أنت متأكد من حذف هذه الوظيفة؟')) return;
+    
+    try {
+      await axios.delete(`${API}/jobs/${jobId}`);
+      toast.success('تم حذف الوظيفة بنجاح');
+      fetchData();
+    } catch (error) {
+      toast.error('فشل حذف الوظيفة');
     }
   };
 

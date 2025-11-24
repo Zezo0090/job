@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+__pycache__/
+venv/
+.venv/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+/coverage
+.nyc_output
+
+# Production - keep build for GitHub Pages
+# /frontend/build
+
+# Misc
+.cache/
+.tmp/
+*.pid
+*.seed
+*.pid.lock
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Backups
+*.backup
+*.bak
+
+# OS
+Thumbs.db
+
+# Emergent specific
+.emergent/
+test_result.md
+detailed_test.py
+
+# Large files
+*.tar.gz
+*.zip

@@ -42,9 +42,9 @@ const LandingPage = () => {
         <div className="container header-container">
           <div className="logo" data-testid="logo">JOBNI</div>
           <nav className="nav-links">
-            <a href="#features" data-testid="nav-features">المميزات</a>
-            <button onClick={() => navigate('/jobs')} className="nav-link-btn" data-testid="nav-jobs">الوظائف</button>
-            <button onClick={() => navigate('/contact')} className="nav-link-btn" data-testid="nav-contact">تواصل معنا</button>
+            <a href="#features" data-testid="nav-features">{t('features')}</a>
+            <button onClick={() => navigate('/jobs')} className="nav-link-btn" data-testid="nav-jobs">{t('jobs')}</button>
+            <button onClick={() => navigate('/contact')} className="nav-link-btn" data-testid="nav-contact">{t('contact')}</button>
           </nav>
           <div className="header-actions">
             <LanguageSwitcher />
@@ -53,13 +53,13 @@ const LandingPage = () => {
               onClick={() => navigate('/auth')} 
               data-testid="login-button"
             >
-              تسجيل الدخول
+              {t('login')}
             </Button>
             <Button 
               onClick={() => navigate('/auth')} 
               data-testid="register-button"
             >
-              إنشاء حساب
+              {t('register')}
             </Button>
           </div>
         </div>

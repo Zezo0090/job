@@ -134,6 +134,30 @@ class Notification(BaseModel):
     read: bool = False
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
+class ConversationBase(BaseModel):
+    job_id: str
+    candidate_id: str
+    employer_id: str
+
+class Conversation(ConversationBase):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class MessageBase(BaseModel):
+    conversation_id: str
+    message_text: str
+
+class MessageCreate(MessageBase):
+    pass
+
+class Message(MessageBase):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    sender_id: str
+    sender_name: str
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
 class UpdateApplicationStatus(BaseModel):
     status: str
 

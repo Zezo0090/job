@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clock, Briefcase, MapPin, TrendingUp, Users, Shield, Bell, Star, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import './LandingPage.css';
 
 const LandingPage = () => {

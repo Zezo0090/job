@@ -15,7 +15,7 @@ import { Briefcase, Clock, Users, TrendingUp, Plus, Check, X, Download, Home, Lo
 import './DashboardPage.css';
 
 const DashboardPage = () => {
-  const { user, API } = useContext(AuthContext);
+  const { user, logout, API } = useContext(AuthContext);
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [applications, setApplications] = useState([]);

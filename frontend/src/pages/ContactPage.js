@@ -172,91 +172,84 @@ const ContactPage = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="contact-form">
+                <form action="https://formsubmit.co/job.ni@outlook.com" method="POST" className="contact-form">
+                  {/* FormSubmit Hidden Fields */}
+                  <input type="hidden" name="_subject" value="رسالة جديدة من موقع Jobni" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  
                   <div className="form-group">
                     <label htmlFor="name">الاسم الكامل *</label>
-                    <Input
+                    <input
+                      type="text"
                       id="name"
                       name="name"
                       placeholder="أدخل اسمك"
-                      value={formData.name}
-                      onChange={handleChange}
                       required
+                      className="form-input"
                       data-testid="name-input"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="email">البريد الإلكتروني *</label>
-                    <Input
+                    <input
+                      type="email"
                       id="email"
                       name="email"
-                      type="email"
                       placeholder="example@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
                       required
+                      className="form-input"
                       data-testid="email-input"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="phone">رقم الجوال</label>
-                    <Input
+                    <input
+                      type="text"
                       id="phone"
                       name="phone"
                       placeholder="05xxxxxxxx"
-                      value={formData.phone}
-                      onChange={handleChange}
+                      className="form-input"
                       data-testid="phone-input"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="subject">الموضوع *</label>
-                    <Input
+                    <input
+                      type="text"
                       id="subject"
                       name="subject"
-                      placeholder="موضوع الرسالة"
-                      value={formData.subject}
-                      onChange={handleChange}
+                      placeholder="موضوع الرسالة (مثال: طلب إنشاء حساب لنشر وظائف)"
                       required
+                      className="form-input"
                       data-testid="subject-input"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="message">الرسالة *</label>
-                    <Textarea
+                    <textarea
                       id="message"
                       name="message"
-                      placeholder="اكتب رسالتك هنا..."
-                      value={formData.message}
-                      onChange={handleChange}
+                      placeholder="اكتب رسالتك هنا... (للشركات: يرجى ذكر اسم الشركة والتفاصيل)"
                       rows={6}
                       required
+                      className="form-textarea"
                       data-testid="message-input"
-                    />
+                    ></textarea>
                   </div>
 
-                  <Button 
+                  <button 
                     type="submit" 
                     className="submit-btn" 
-                    disabled={sending}
                     data-testid="submit-button"
                   >
-                    {sending ? (
-                      <>
-                        <div className="spinner"></div>
-                        جاري الإرسال...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={20} />
-                        إرسال الرسالة
-                      </>
-                    )}
-                  </Button>
+                    <Send size={20} />
+                    إرسال الرسالة
+                  </button>
                 </form>
               </CardContent>
             </Card>

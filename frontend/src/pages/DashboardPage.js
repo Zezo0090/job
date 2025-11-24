@@ -153,6 +153,10 @@ const DashboardPage = () => {
                   نشر وظيفة
                 </Button>
               )}
+              <Button variant="outline" onClick={logout} data-testid="logout-button" className="logout-btn">
+                <LogOut size={20} className="ml-2" />
+                تسجيل الخروج
+              </Button>
             </div>
           </div>
         </div>

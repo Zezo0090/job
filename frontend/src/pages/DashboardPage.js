@@ -263,12 +263,49 @@ const DashboardPage = () => {
               ) : (
                 <div className="jobs-list">
                   {jobs.map(job => (
-                    <div key={job.id} className="job-item" data-testid={`job-${job.id}`}>
-                      <div>
-                        <h3>{job.title}</h3>
-                        <p>{job.company_name} - {job.location}</p>
+                    <div key={job.id} className="job-item-enhanced" data-testid={`job-${job.id}`}>
+                      <div className="job-item-main">
+                        <div>
+                          <h3 className="job-item-title">{job.title}</h3>
+                          <p className="job-item-details">{job.company_name} - {job.location}</p>
+                          <p className="job-item-salary">{job.salary} ريال - {job.duration_value}</p>
+                        </div>
+                        <Badge variant={job.status === 'active' ? 'success' : 'default'}>{job.status === 'active' ? 'نشط' : job.status}</Badge>
                       </div>
-                      <Badge>{job.status}</Badge>
+                      {user.role === 'admin' && (
+                        <div className="job-item-actions">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => {
+                              setJobForm({
+                                title: job.title,
+                                description: job.description,
+                                company_name: job.company_name,
+                                location: job.location,
+                                duration_type: job.duration_type,
+                                duration_value: job.duration_value,
+                                salary: job.salary.toString(),
+                                category: job.category,
+                                requirements: job.requirements.join('\n')
+                              });
+                              setEditingJobId(job.id);
+                              setShowCreateJob(true);
+                            }}
+                            data-testid={`edit-job-${job.id}`}
+                          >
+                            <Edit size={16} className="ml-1" /> تعديل
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="destructive"
+                            onClick={() => handleDeleteJob(job.id)}
+                            data-testid={`delete-job-${job.id}`}
+                          >
+                            <Trash2 size={16} className="ml-1" /> حذف
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

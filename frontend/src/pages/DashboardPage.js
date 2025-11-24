@@ -351,10 +351,26 @@ const DashboardPage = () => {
       </div>
 
       {/* Create Job Dialog */}
-      <Dialog open={showCreateJob} onOpenChange={setShowCreateJob}>
+      <Dialog open={showCreateJob} onOpenChange={(open) => {
+        setShowCreateJob(open);
+        if (!open) {
+          setEditingJobId(null);
+          setJobForm({
+            title: '',
+            description: '',
+            company_name: user?.company_name || '',
+            location: '',
+            duration_type: 'hour',
+            duration_value: '',
+            salary: '',
+            category: 'التجزئة',
+            requirements: ''
+          });
+        }
+      }}>
         <DialogContent className="max-w-2xl" data-testid="create-job-dialog">
           <DialogHeader>
-            <DialogTitle>نشر وظيفة جديدة</DialogTitle>
+            <DialogTitle>{editingJobId ? 'تعديل الوظيفة' : 'نشر وظيفة جديدة'}</DialogTitle>
           </DialogHeader>
           <div className="job-form">
             <div className="form-row">

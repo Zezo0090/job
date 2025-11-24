@@ -40,8 +40,8 @@ const LandingPage = () => {
           <div className="logo" data-testid="logo">JOBNI</div>
           <nav className="nav-links">
             <a href="#features" data-testid="nav-features">المميزات</a>
-            <a href="#jobs" data-testid="nav-jobs">الوظائف</a>
-            <a href="#contact" data-testid="nav-contact">تواصل معنا</a>
+            <button onClick={() => navigate('/jobs')} className="nav-link-btn" data-testid="nav-jobs">الوظائف</button>
+            <button onClick={() => navigate('/contact')} className="nav-link-btn" data-testid="nav-contact">تواصل معنا</button>
           </nav>
           <div className="header-actions">
             <Button 

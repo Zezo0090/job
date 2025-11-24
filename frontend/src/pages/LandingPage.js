@@ -95,7 +95,7 @@ const LandingPage = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/contact')}
                 data-testid="post-job-button"
               >
                 انشر وظيفة
